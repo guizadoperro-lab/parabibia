@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
-
-<style>
+<title>Login</title><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
 html,body{height:100%;}
 
@@ -45,15 +42,19 @@ body{
 h1{
     white-space: nowrap;
     margin-bottom:20px;
-    font-size:20px;
+    font-size:18px;
     letter-spacing:2px;
-    color:#c77dff;
+    color:#d8b4ff;
+
     text-shadow:
+        0 0 2px #fff,
         0 0 5px #c77dff,
         0 0 10px #a855f7,
         0 0 20px #9333ea,
-        0 0 40px #7e22ce;
-    animation: neonPulse 2s ease-in-out infinite;
+        0 0 40px #7e22ce,
+        0 0 80px #6b21a8;
+
+    animation: neonPulse 1.8s ease-in-out infinite;
 }
 
 @keyframes neonPulse{
@@ -154,25 +155,17 @@ button{
     100%{left:100%;}
 }
 
-</style>
-</head>
-
-<body>
-
-<div class="container" id="box">
-    <h1 id="title"></h1>
-
-    <div class="input-box">
-        <input type="password" id="senha" placeholder="Digite a senha">
-        <span class="eye" onclick="toggleSenha()" id="eye">👁️</span>
-    </div>
-
-    <button onclick="verificarSenha()">Entrar 💘</button>
-
-    <div class="error" id="erro">Senha incorreta</div>
+</style></head><body><div class="container" id="box">
+    <h1 id="title"></h1><div class="input-box">
+    <input type="password" id="senha" placeholder="Digite a senha">
+    <span class="eye" onclick="toggleSenha()" id="eye">👁️</span>
 </div>
 
-<script>
+<button onclick="verificarSenha()">Entrar 💘</button>
+
+<div class="error" id="erro">Senha incorreta</div>
+
+</div><script>
 // texto digitando
 const text = "isso é ABSOLUTE...";
 let i = 0;
@@ -211,7 +204,5 @@ function verificarSenha(){
         erro.style.display = 'block';
     }
 }
-</script>
-
-</body>
+</script></body>
 </html>
