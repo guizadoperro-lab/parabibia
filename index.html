@@ -1,16 +1,17 @@
 <!DOCTYPE html><html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.1">
 <title>Login</title><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-
 html,body{height:100%;background:#000;}
 
 body{
-    
-    height:100vh;display:flex;justify-content:center;align-items:center;
-    background:url('sua-foto.jpg') no-repeat center/cover;
+    min-height:100dvh;
+    display:flex;justify-content:center;align-items:center;
+    background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
+    url('beaa.jpg') no-repeat center center/cover;
     overflow:hidden;
 }
 
@@ -34,10 +35,7 @@ body{
 
 @keyframes fadeIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 
-h1{
-    margin-bottom:30px;font-size:22px;letter-spacing:2px;
-    min-height:28px;
-}
+h1{margin-bottom:30px;font-size:22px;letter-spacing:2px;min-height:28px;}
 
 .input-box{position:relative;width:100%;}
 
@@ -49,17 +47,14 @@ input{
     transition:0.3s;
 }
 
-input:focus{
-    box-shadow:0 0 15px rgba(255,0,120,0.6);
-}
-
+input:focus{box-shadow:0 0 15px rgba(255,0,120,0.6);} 
 input::placeholder{color:#ccc;}
 
 .eye{
     position:absolute;right:12px;top:50%;transform:translateY(-50%);
     cursor:pointer;font-size:18px;transition:0.3s;
 }
-.eye:hover{transform:translateY(-50%) scale(1.2);}
+.eye:hover{transform:translateY(-50%) scale(1.2);} 
 
 button{
     margin-top:22px;width:100%;padding:14px;border:none;border-radius:12px;
@@ -69,26 +64,13 @@ button{
 }
 button:hover{transform:scale(1.06);box-shadow:0 0 20px rgba(255,0,120,0.7);} 
 
-.error{
-    margin-top:12px;color:#ff8080;display:none;font-size:13px;
-}
+.error{margin-top:12px;color:#ff8080;display:none;font-size:13px;}
 
 .shake{animation:shake 0.3s;}
-@keyframes shake{
-    0%{transform:translateX(0);}25%{transform:translateX(-5px);}50%{transform:translateX(5px);}75%{transform:translateX(-5px);}100%{transform:translateX(0);} }
+@keyframes shake{0%{transform:translateX(0);}25%{transform:translateX(-5px);}50%{transform:translateX(5px);}75%{transform:translateX(-5px);}100%{transform:translateX(0);} }
 
-.heart{
-    position:absolute;color:#ff4d88;
-    animation:float 6s linear infinite;
-}
-@keyframes float{
-    0%{transform:translateY(100vh) scale(0.6);opacity:0;}
-    50%{opacity:1;transform:translateY(40vh) scale(1);}
-    100%{transform:translateY(-10vh) scale(1.4);opacity:0;}
-}
-    50%{opacity:1;}
-    100%{transform:translateY(-10vh);opacity:0;}
-}
+.heart{position:absolute;color:#ff4d88;animation:float 6s linear infinite;}
+@keyframes float{0%{transform:translateY(100vh) scale(0.6);opacity:0;}50%{opacity:1;transform:translateY(40vh) scale(1);}100%{transform:translateY(-10vh) scale(1.4);opacity:0;}}
 
 </style></head><body>
 <div class="overlay"></div><div class="container" id="box">
@@ -101,7 +83,6 @@ button:hover{transform:scale(1.06);box-shadow:0 0 20px rgba(255,0,120,0.7);}
 <div class="error" id="erro">Senha incorreta</div>
 
 </div><script>
-// Texto digitando
 const text = "isso é ABSOLUTE...";
 let i = 0;
 function typing(){
@@ -140,7 +121,6 @@ function verificarSenha(){
     }
 }
 
-// corações
 setInterval(()=>{
     const heart = document.createElement('div');
     heart.classList.add('heart');
@@ -151,7 +131,6 @@ setInterval(()=>{
     setTimeout(()=>heart.remove(),6000);
 },400);
 
-// efeito clique
 window.addEventListener('click', e=>{
     const heart = document.createElement('div');
     heart.innerHTML='💖';
