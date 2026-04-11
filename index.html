@@ -4,14 +4,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.1">
 <title>Login</title><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-html,body{height:100%;background:#000;}
-
-body{
-    min-height:100dvh;
-    display:flex;justify-content:center;align-items:flex-start;padding-top:120px;
-    background:
-    linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)),
-    url('beaa.jpg') no-repeat center center/cover;
+html,body{height:100%;background:
+linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
+url('beaa.jpg') no-repeat center center / cover;
+background-attachment: fixed;
     overflow:hidden;
 }
 
@@ -23,8 +19,8 @@ body{
 .container{
     transform: scale(1.15);
     position:relative;
-    background:rgba(255,255,255,0.015);
-    backdrop-filter: blur(18px);
+    background:rgba(255,255,255,0.01);
+    backdrop-filter: blur(25px);
     padding:45px 30px;
     border-radius:25px;
     text-align:center;color:#fff;
