@@ -1,91 +1,106 @@
 <!DOCTYPE html><html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login</title><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-html,body{height:100%;background:
-linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
-url('beaa.jpg') no-repeat center center / cover;
-background-attachment: fixed;
+html,body{height:100%;}
+
+body{
+    min-height:100dvh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    background:
+    linear-gradient(rgba(255,255,255,0.08), rgba(0,0,0,0.4)),
+    url('beaa.jpg') no-repeat center center/cover;
     overflow:hidden;
 }
 
-.overlay{
-    position:absolute;width:100%;height:100%;
-    background:radial-gradient(circle at center, rgba(0,0,0,0.6), rgba(0,0,0,0.95));
-}
-
 .container{
-    transform: scale(1.15);
-    position:relative;
-    background:rgba(255,255,255,0.01);
-    backdrop-filter: blur(25px);
-    padding:45px 30px;
+    margin-top:55vh; /* empurra o login pra baixo (abaixo do rosto) */
+    background:rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    padding:35px 25px;
     border-radius:25px;
-    text-align:center;color:#fff;
-    width:330px;
-    box-shadow:0 0 40px rgba(255,0,120,0.25);
-    animation:fadeIn 1.2s ease;
+    text-align:center;
+    color:#fff;
+    width:85%;
+    max-width:320px;
+    box-shadow:0 0 30px rgba(255,0,100,0.2);
+    animation:fadeIn 1s ease;
 }
 
-@keyframes fadeIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px);} 
+    to{opacity:1;transform:translateY(0);} 
+}
 
-h1{margin-bottom:30px;font-size:22px;letter-spacing:2px;min-height:28px;}
+h1{
+    margin-bottom:20px;
+    font-size:20px;
+    letter-spacing:2px;
+}
 
 .input-box{position:relative;width:100%;}
 
 input{
-    width:100%;padding:14px 45px 14px 14px;
-    border:none;border-radius:12px;outline:none;
-    background:rgba(255,255,255,0.08);
-    color:#fff;font-size:14px;
-    transition:0.3s;
+    width:100%;
+    padding:12px 40px 12px 12px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    background:rgba(255,255,255,0.12);
+    color:#fff;
 }
 
-input:focus{box-shadow:0 0 15px rgba(255,0,120,0.6);} 
-input::placeholder{color:#ccc;}
+input::placeholder{color:#ddd;}
 
 .eye{
-    position:absolute;right:12px;top:50%;transform:translateY(-50%);
-    cursor:pointer;font-size:18px;transition:0.3s;
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
 }
-.eye:hover{transform:translateY(-50%) scale(1.2);} 
 
 button{
-    margin-top:22px;width:100%;padding:14px;border:none;border-radius:12px;
+    margin-top:15px;
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
     background:linear-gradient(45deg,#ff4d88,#ff0055);
-    color:#fff;font-weight:bold;cursor:pointer;
-    transition:0.3s;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
 }
-button:hover{transform:scale(1.06);box-shadow:0 0 20px rgba(255,0,120,0.7);} 
 
-.error{margin-top:12px;color:#ff8080;display:none;font-size:13px;}
+.error{
+    margin-top:10px;
+    color:#ff8080;
+    display:none;
+}
 
-.shake{animation:shake 0.3s;}
-@keyframes shake{0%{transform:translateX(0);}25%{transform:translateX(-5px);}50%{transform:translateX(5px);}75%{transform:translateX(-5px);}100%{transform:translateX(0);} }
-
-.heart{position:absolute;color:#ff4d88;animation:float 6s linear infinite;}
-@keyframes float{0%{transform:translateY(100vh) scale(0.6);opacity:0;}50%{opacity:1;transform:translateY(40vh) scale(1);}100%{transform:translateY(-10vh) scale(1.4);opacity:0;}}
-
-</style></head><body>
-<div class="overlay"></div><div class="container" id="box">
+</style></head><body><div class="container" id="box">
     <h1 id="title"></h1><div class="input-box">
     <input type="password" id="senha" placeholder="Digite a senha">
     <span class="eye" onclick="toggleSenha()" id="eye">👁️</span>
 </div>
 
 <button onclick="verificarSenha()">Entrar 💘</button>
+
 <div class="error" id="erro">Senha incorreta</div>
 
 </div><script>
+// texto digitando
 const text = "isso é ABSOLUTE...";
 let i = 0;
 function typing(){
     if(i < text.length){
         document.getElementById('title').innerHTML += text.charAt(i);
         i++;
-        setTimeout(typing, 70);
+        setTimeout(typing, 60);
     }
 }
 typing();
@@ -93,6 +108,7 @@ typing();
 function toggleSenha(){
     const input = document.getElementById('senha');
     const eye = document.getElementById('eye');
+
     if(input.type === 'password'){
         input.type = 'text';
         eye.textContent = '🙈';
@@ -105,38 +121,15 @@ function toggleSenha(){
 function verificarSenha(){
     const senha = document.getElementById('senha').value;
     const erro = document.getElementById('erro');
-    const box = document.getElementById('box');
 
     if(senha === 'GUIBI'){
-        document.body.innerHTML = '<h1 style="color:white;text-align:center;margin-top:40vh;font-size:28px;animation:fadeIn 1s;">Acesso liberado 💘</h1>';
-        setTimeout(()=>{window.location.href='principal.html';},1500);
+        document.body.innerHTML = '<h1 style="color:white;text-align:center;margin-top:40vh;">Acesso liberado 💘</h1>';
+        setTimeout(()=>{
+            window.location.href = 'principal.html';
+        },1500);
     } else {
         erro.style.display = 'block';
-        box.classList.add('shake');
-        setTimeout(()=>box.classList.remove('shake'),300);
     }
 }
-
-setInterval(()=>{
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '❤';
-    heart.style.left = Math.random()*100+'vw';
-    heart.style.fontSize = (10+Math.random()*25)+'px';
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),6000);
-},400);
-
-window.addEventListener('click', e=>{
-    const heart = document.createElement('div');
-    heart.innerHTML='💖';
-    heart.style.position='absolute';
-    heart.style.left=e.clientX+'px';
-    heart.style.top=e.clientY+'px';
-    heart.style.pointerEvents='none';
-    heart.style.animation='float 2s ease-out';
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),2000);
-});
 </script></body>
 </html>
