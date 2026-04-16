@@ -32,23 +32,11 @@ body{
     animation:fadeIn 1s ease;
 }
 
-.container::before{
-    content:'';
-    position:absolute;
-    top:0; left:-100%;
-    width:100%; height:100%;
-    background:linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
-    animation: shine 4s infinite;
-}
-
 h1{
     white-space: nowrap;
-    width:100%;
-    text-align:center;
     font-size: clamp(14px, 4vw, 18px);
     letter-spacing:2px;
     color:#e9d5ff;
-
     text-shadow:
         0 0 3px #fff,
         0 0 6px #d946ef,
@@ -56,14 +44,12 @@ h1{
         0 0 24px #a21caf,
         0 0 48px #86198f,
         0 0 80px #701a75;
-
-    animation: neonFlicker 2s infinite alternate;
 }
 
-.sub{
+.question{
     margin-top:8px;
-    font-size:12px;
-    opacity:0.8;
+    font-size:13px;
+    opacity:0.9;
 }
 
 .input-box{position:relative;width:100%;margin-top:15px;}
@@ -96,74 +82,55 @@ button{
     color:#fff;
     font-weight:bold;
     cursor:pointer;
-    animation: pulse 2s infinite;
 }
 
 .error{margin-top:10px;color:#ff8080;display:none;font-size:13px;}
 
-@keyframes zoomBg{0%{background-size:100%;}100%{background-size:110%;}}
-@keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
-@keyframes shine{0%{left:-100%;}50%{left:100%;}100%{left:100%;}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-@keyframes neonFlicker{0%,100%{opacity:1;}50%{opacity:0.7;}}
+.heart{
+    position:absolute;
+    bottom:0;
+    color:#ff4d88;
+    animation:float 5s linear infinite;
+}
 
-.heart{position:absolute;color:#ff4d88;font-size:14px;animation:float 4s linear infinite;}
-@keyframes float{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(-80px);opacity:0;}}
+@keyframes float{
+    0%{transform:translateY(0);opacity:0;}
+    50%{opacity:1;}
+    100%{transform:translateY(-100vh);opacity:0;}
+}
+
+@keyframes zoomBg{0%{background-size:100%;}100%{background-size:110%;}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 </style></head><body><div class="container">
     <h1 id="title"></h1>
-    <div class="sub" id="subtext"></div><div class="input-box">
-    <input type="password" id="senha" placeholder="Digite a senha">
+    <div class="question">isso é ABSOLUTE?</div><div class="input-box">
+    <input type="password" id="senha" placeholder="Digite a resposta">
     <span class="eye" onclick="toggleSenha()">👁️</span>
 </div>
 
-<button onclick="verificarSenha()">Entrar 💘</button>
+<button onclick="verificarSenha()">Responder 💘</button>
 
-<div class="error" id="erro">Senha incorreta</div>
+<div class="error" id="erro">Resposta incorreta</div>
 
 </div><script>
-const firstText = "eu sei que é você...";
-const secondText = "isso é ABSOLUTE...";
-
+// texto principal
+const text = "eu sei que é vc.";
 let i = 0;
-function typingFirst(){
-    if(i < firstText.length){
-        document.getElementById('title').innerHTML += firstText.charAt(i);
+
+function typing(){
+    if(i < text.length){
+        document.getElementById('title').innerHTML += text.charAt(i);
         i++;
-        setTimeout(typingFirst, 60);
-    } else {
-        setTimeout(()=>{
-            document.getElementById('title').innerHTML = '';
-            typeSecond();
-        },1000);
+        setTimeout(typing, 60);
     }
 }
-
-let j = 0;
-function typeSecond(){
-    if(j < secondText.length){
-        document.getElementById('title').innerHTML += secondText.charAt(j);
-        j++;
-        setTimeout(typeSecond, 60);
-    }
-}
-
-typingFirst();
+typing();
 
 function toggleSenha(){
     const input = document.getElementById('senha');
     input.type = input.type === 'password' ? 'text' : 'password';
 }
-
-// corações ao digitar
-document.getElementById('senha').addEventListener('input', ()=>{
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '💖';
-    heart.style.left = (50 + Math.random()*20) + '%';
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),4000);
-});
 
 function verificarSenha(){
     const senha = document.getElementById('senha').value;
@@ -178,5 +145,19 @@ function verificarSenha(){
         erro.style.display = 'block';
     }
 }
+
+// corações subindo
+setInterval(()=>{
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '💖';
+    heart.style.left = Math.random()*100 + 'vw';
+    heart.style.fontSize = (10 + Math.random()*20) + 'px';
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },5000);
+},500);
 </script></body>
 </html>
