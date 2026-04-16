@@ -122,30 +122,33 @@ button{
 <div class="error" id="erro">Senha incorreta</div>
 
 </div><script>
-const mainText = "isso é ABSOLUTE...";
-const subText = "igual o que eu sinto por você 💜";
-let i = 0;
+const firstText = "eu sei que é você...";
+const secondText = "isso é ABSOLUTE...";
 
-function typing(){
-    if(i < mainText.length){
-        document.getElementById('title').innerHTML += mainText.charAt(i);
+let i = 0;
+function typingFirst(){
+    if(i < firstText.length){
+        document.getElementById('title').innerHTML += firstText.charAt(i);
         i++;
-        setTimeout(typing, 60);
+        setTimeout(typingFirst, 60);
     } else {
-        setTimeout(typeSub, 500);
+        setTimeout(()=>{
+            document.getElementById('title').innerHTML = '';
+            typeSecond();
+        },1000);
     }
 }
 
 let j = 0;
-function typeSub(){
-    if(j < subText.length){
-        document.getElementById('subtext').innerHTML += subText.charAt(j);
+function typeSecond(){
+    if(j < secondText.length){
+        document.getElementById('title').innerHTML += secondText.charAt(j);
         j++;
-        setTimeout(typeSub, 40);
+        setTimeout(typeSecond, 60);
     }
 }
 
-typing();
+typingFirst();
 
 function toggleSenha(){
     const input = document.getElementById('senha');
