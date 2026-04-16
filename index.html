@@ -4,43 +4,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login</title><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-html,body{
-    height:100dvh;
-    height:100%;
-    overflow:hidden;
-}
+html,body{height:100%;overflow:hidden;}
 
 body{
-    min-height:100dvh;
+    height:100dvh;
     display:flex;
     justify-content:center;
     align-items:flex-start;
     background:
     linear-gradient(rgba(255,255,255,0.08), rgba(0,0,0,0.4)),
     url('beaa.jpg') no-repeat center center/cover;
-    overflow:hidden;
+    animation: zoomBg 20s ease-in-out infinite alternate;
 }
 
 .container{
-    margin-top:55vh; /* empurra o login pra baixo (abaixo do rosto) */
-    background:rgba(255,255,255,0.05);
-    backdrop-filter: blur(20px);
+    margin-top:55vh;
+    position:relative;
+    background:rgba(255,255,255,0.03);
+    backdrop-filter: blur(25px);
     padding:35px 25px;
     border-radius:25px;
     text-align:center;
     color:#fff;
-    width:85%;
-    max-width:320px;
+    width:90%;
+    max-width:380px;
     box-shadow:0 0 30px rgba(255,0,100,0.2);
     animation:fadeIn 1s ease;
 }
 
-@keyframes fadeIn{
-    0%{opacity:0; transform:translateY(60px) scale(0.95); filter:blur(8px);} 
-    60%{opacity:1; transform:translateY(-10px) scale(1.02); filter:blur(0);} 
-    100%{transform:translateY(0) scale(1);} 
-} 
-    to{opacity:1;transform:translateY(0);} 
+.container::before{
+    content:'';
+    position:absolute;
+    top:0; left:-100%;
+    width:100%; height:100%;
+    background:linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shine 4s infinite;
 }
 
 h1{
@@ -49,7 +47,6 @@ h1{
     text-align:center;
     font-size: clamp(14px, 4vw, 18px);
     letter-spacing:2px;
-
     color:#e9d5ff;
 
     text-shadow:
@@ -63,47 +60,13 @@ h1{
     animation: neonFlicker 2s infinite alternate;
 }
 
-@keyframes neonFlicker{
-    0%, 18%, 22%, 25%, 53%, 57%, 100%{
-        opacity:1;
-        text-shadow:
-            0 0 2px #fff,
-            0 0 5px #c77dff,
-            0 0 10px #a855f7,
-            0 0 20px #9333ea,
-            0 0 40px #7e22ce,
-            0 0 80px #6b21a8;
-    }
-
-    20%, 24%, 55%{
-        opacity:0.4;
-        text-shadow:
-            0 0 1px #c77dff,
-            0 0 4px #a855f7,
-            0 0 8px #9333ea;
-    }
+.sub{
+    margin-top:8px;
+    font-size:12px;
+    opacity:0.8;
 }
 
-@keyframes neonPulse{
-    0%,100%{
-        text-shadow:
-        0 0 5px #c77dff,
-        0 0 10px #a855f7,
-        0 0 20px #9333ea,
-        0 0 40px #7e22ce;
-        opacity:1;
-    }
-    50%{
-        text-shadow:
-        0 0 2px #c77dff,
-        0 0 6px #a855f7,
-        0 0 12px #9333ea,
-        0 0 25px #7e22ce;
-        opacity:0.8;
-    }
-}
-
-.input-box{position:relative;width:100%;}
+.input-box{position:relative;width:100%;margin-top:15px;}
 
 input{
     width:100%;
@@ -111,11 +74,9 @@ input{
     border:none;
     border-radius:10px;
     outline:none;
-    background:rgba(255,255,255,0.12);
+    background:rgba(255,255,255,0.08);
     color:#fff;
 }
-
-input::placeholder{color:#ddd;}
 
 .eye{
     position:absolute;
@@ -135,57 +96,25 @@ button{
     color:#fff;
     font-weight:bold;
     cursor:pointer;
-}
-
-.error{
-    margin-top:10px;
-    color:#ff8080;
-    display:none;
-}
-
-
-
-/* animação zoom fundo */
-@keyframes zoomBg{
-    0%{background-size:100%;}
-    100%{background-size:110%;}
-}
-
-body{
-    animation: zoomBg 20s ease-in-out infinite alternate;
-}
-
-/* botão pulsando */
-@keyframes pulse{
-    0%{transform:scale(1); box-shadow:0 0 0 rgba(255,0,100,0.4);} 
-    50%{transform:scale(1.05); box-shadow:0 0 20px rgba(255,0,100,0.7);} 
-    100%{transform:scale(1); box-shadow:0 0 0 rgba(255,0,100,0.4);} 
-}
-
-button{
     animation: pulse 2s infinite;
 }
 
-/* brilho passando no card */
-.container::before{
-    content:'';
-    position:absolute;
-    top:0; left:-100%;
-    width:100%; height:100%;
-    background:linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
-    animation: shine 4s infinite;
-}
+.error{margin-top:10px;color:#ff8080;display:none;font-size:13px;}
 
-@keyframes shine{
-    0%{left:-100%;}
-    50%{left:100%;}
-    100%{left:100%;}
-}
+@keyframes zoomBg{0%{background-size:100%;}100%{background-size:110%;}}
+@keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
+@keyframes shine{0%{left:-100%;}50%{left:100%;}100%{left:100%;}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes neonFlicker{0%,100%{opacity:1;}50%{opacity:0.7;}}
 
-</style></head><body><div class="container" id="box">
-    <h1 id="title"></h1><div class="input-box">
+.heart{position:absolute;color:#ff4d88;font-size:14px;animation:float 4s linear infinite;}
+@keyframes float{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(-80px);opacity:0;}}
+
+</style></head><body><div class="container">
+    <h1 id="title"></h1>
+    <div class="sub" id="subtext"></div><div class="input-box">
     <input type="password" id="senha" placeholder="Digite a senha">
-    <span class="eye" onclick="toggleSenha()" id="eye">👁️</span>
+    <span class="eye" onclick="toggleSenha()">👁️</span>
 </div>
 
 <button onclick="verificarSenha()">Entrar 💘</button>
@@ -193,37 +122,52 @@ button{
 <div class="error" id="erro">Senha incorreta</div>
 
 </div><script>
-// texto digitando
-const text = "isso é ABSOLUTE?";
+const mainText = "isso é ABSOLUTE...";
+const subText = "igual o que eu sinto por você 💜";
 let i = 0;
+
 function typing(){
-    if(i < text.length){
-        document.getElementById('title').innerHTML += text.charAt(i);
+    if(i < mainText.length){
+        document.getElementById('title').innerHTML += mainText.charAt(i);
         i++;
         setTimeout(typing, 60);
+    } else {
+        setTimeout(typeSub, 500);
     }
 }
+
+let j = 0;
+function typeSub(){
+    if(j < subText.length){
+        document.getElementById('subtext').innerHTML += subText.charAt(j);
+        j++;
+        setTimeout(typeSub, 40);
+    }
+}
+
 typing();
 
 function toggleSenha(){
     const input = document.getElementById('senha');
-    const eye = document.getElementById('eye');
-
-    if(input.type === 'password'){
-        input.type = 'text';
-        eye.textContent = '🙈';
-    } else {
-        input.type = 'password';
-        eye.textContent = '👁️';
-    }
+    input.type = input.type === 'password' ? 'text' : 'password';
 }
+
+// corações ao digitar
+document.getElementById('senha').addEventListener('input', ()=>{
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '💖';
+    heart.style.left = (50 + Math.random()*20) + '%';
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),4000);
+});
 
 function verificarSenha(){
     const senha = document.getElementById('senha').value;
     const erro = document.getElementById('erro');
 
     if(senha === 'GUIBI'){
-        document.body.innerHTML = '<h1 style="color:white;text-align:center;margin-top:40vh;">Acesso liberado 💘</h1>';
+        document.body.innerHTML = '<h1 style="color:white;text-align:center;margin-top:40vh;">sabia que era você 💜</h1>';
         setTimeout(()=>{
             window.location.href = 'principal.html';
         },1500);
