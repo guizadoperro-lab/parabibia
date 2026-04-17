@@ -1,10 +1,22 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title><style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-html,body{height:100%;overflow:hidden;}
+<title>Login</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+html,body{
+    height:100%;
+    overflow:hidden;
+}
 
 body{
     height:100dvh;
@@ -17,6 +29,7 @@ body{
     animation: zoomBg 20s ease-in-out infinite alternate;
 }
 
+/* CONTAINER */
 .container{
     margin-top:55vh;
     position:relative;
@@ -32,6 +45,7 @@ body{
     animation:fadeIn 1s ease;
 }
 
+/* TÍTULO */
 h1{
     white-space: nowrap;
     font-size: clamp(14px, 4vw, 18px);
@@ -41,14 +55,13 @@ h1{
         0 0 3px #fff,
         0 0 6px #d946ef,
         0 0 12px #c026d3,
-        0 0 24px #a21caf,
-        0 0 48px #86198f,
-        0 0 80px #701a75;
+        0 0 24px #a21caf;
 }
 
+/* PERGUNTA */
 .question{
     margin-top:10px;
-    font-size:18px;
+    font-size:20px;
     font-weight:bold;
     opacity:0;
     color:#e9d5ff;
@@ -64,13 +77,12 @@ h1{
     transition: opacity 0.6s ease;
 }
 
-@keyframes pulseNeon{
-    0%{text-shadow:0 0 5px #fff,0 0 10px #d946ef,0 0 20px #c026d3;}
-    50%{text-shadow:0 0 10px #fff,0 0 20px #e879f9,0 0 40px #d946ef;}
-    100%{text-shadow:0 0 5px #fff,0 0 10px #d946ef,0 0 20px #c026d3;}
+/* INPUT */
+.input-box{
+    position:relative;
+    width:100%;
+    margin-top:15px;
 }
-
-.input-box{position:relative;width:100%;margin-top:15px;}
 
 input{
     width:100%;
@@ -90,6 +102,7 @@ input{
     cursor:pointer;
 }
 
+/* BOTÃO */
 button{
     margin-top:15px;
     width:100%;
@@ -102,8 +115,14 @@ button{
     cursor:pointer;
 }
 
-.error{margin-top:10px;color:#ff8080;display:none;font-size:13px;}
+/* ERRO */
+.error{
+    margin-top:10px;
+    color:#ff8080;
+    display:none;
+}
 
+/* CORAÇÕES */
 .heart{
     position:absolute;
     bottom:0;
@@ -111,57 +130,81 @@ button{
     animation:float 5s linear infinite;
 }
 
+/* ANIMAÇÕES */
 @keyframes float{
     0%{transform:translateY(0);opacity:0;}
     50%{opacity:1;}
     100%{transform:translateY(-100vh);opacity:0;}
 }
 
-@keyframes zoomBg{0%{background-size:100%;}100%{background-size:110%;}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes zoomBg{
+    0%{background-size:100%;}
+    100%{background-size:110%;}
+}
 
-</style></head><body><div class="container">
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes pulseNeon{
+    0%{text-shadow:0 0 5px #fff,0 0 10px #d946ef,0 0 20px #c026d3;}
+    50%{text-shadow:0 0 10px #fff,0 0 25px #e879f9,0 0 50px #d946ef;}
+    100%{text-shadow:0 0 5px #fff,0 0 10px #d946ef,0 0 20px #c026d3;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
     <h1 id="title"></h1>
-    <div class="question">isso é ABSOLUTE?</div><div class="input-box">
-    <input type="password" id="senha" placeholder="Digite a resposta">
-    <span class="eye" onclick="toggleSenha()">👁️</span>
+    <div class="question"></div>
+
+    <div class="input-box">
+        <input type="password" id="senha" placeholder="Digite a resposta">
+        <span class="eye" onclick="toggleSenha()">👁️</span>
+    </div>
+
+    <button onclick="verificarSenha()">Responder 💘</button>
+
+    <div class="error" id="erro">Resposta incorreta</div>
+
 </div>
 
-<button onclick="verificarSenha()">Responder 💘</button>
+<script>
+const title = document.getElementById('title');
+const question = document.querySelector('.question');
 
-<div class="error" id="erro">Resposta incorreta</div>
-
-</div><script>
-// texto principal
 const text = "eu sei que é vc.";
 const questionText = "isso é ABSOLUTE?";
+
 let i = 0;
 
 function typing(){
     if(i < text.length){
-        document.getElementById('title').innerHTML += text.charAt(i);
+        title.innerHTML += text.charAt(i);
         i++;
         setTimeout(typing, 60);
     } else {
-        setTimeout(typeQuestion, 400);
+        setTimeout(typeQuestion, 600);
     }
 }
 
 let j = 0;
-function typeQuestion(){
-    const q = document.querySelector('.question');
 
+function typeQuestion(){
     if(j === 0){
-        q.innerHTML = '';
-        q.style.opacity = 1;
+        question.innerHTML = "";
+        question.style.opacity = 1;
     }
 
     if(j < questionText.length){
-        q.innerHTML += questionText.charAt(j);
+        question.innerHTML += questionText.charAt(j);
         j++;
         setTimeout(typeQuestion, 50);
     }
-}
 }
 
 typing();
@@ -198,5 +241,7 @@ setInterval(()=>{
         heart.remove();
     },5000);
 },500);
-</script></body>
+</script>
+
+</body>
 </html>
