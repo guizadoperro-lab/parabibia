@@ -49,7 +49,14 @@ h1{
 .question{
     margin-top:8px;
     font-size:13px;
-    opacity:0.9;
+    opacity:0;
+    color:#e9d5ff;
+    text-shadow:
+        0 0 3px #fff,
+        0 0 6px #d946ef,
+        0 0 12px #c026d3,
+        0 0 24px #a21caf;
+    transition: opacity 0.6s ease;
 }
 
 .input-box{position:relative;width:100%;margin-top:15px;}
@@ -116,6 +123,7 @@ button{
 </div><script>
 // texto principal
 const text = "eu sei que é vc.";
+const questionText = "isso é ABSOLUTE?";
 let i = 0;
 
 function typing(){
@@ -123,8 +131,23 @@ function typing(){
         document.getElementById('title').innerHTML += text.charAt(i);
         i++;
         setTimeout(typing, 60);
+    } else {
+        setTimeout(typeQuestion, 400);
     }
 }
+
+let j = 0;
+function typeQuestion(){
+    const q = document.querySelector('.question');
+    q.style.opacity = 1;
+
+    if(j < questionText.length){
+        q.innerHTML += questionText.charAt(j);
+        j++;
+        setTimeout(typeQuestion, 50);
+    }
+}
+
 typing();
 
 function toggleSenha(){
