@@ -219,29 +219,37 @@ function verificarSenha(){
     const erro = document.getElementById('erro');
 
     if(senha === 'GUIBI'){
-        document.body.innerHTML = '<h1 style="color:white;text-align:center;margin-top:40vh;">sabia que era você 💜</h1>';
+
+        // fade out da tela atual
+        document.body.classList.add('fade-out');
+
         setTimeout(()=>{
-            window.location.href = 'principal.html';
-        },1500);
+
+            // troca conteúdo
+            document.body.innerHTML = `
+                <div style="
+                    height:100vh;
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    background:black;
+                    color:white;
+                    font-size:22px;
+                    text-align:center;
+                    padding:20px;
+                " class="fade-in">
+                    EU SEI QUE É VOCÊ MEU AMOR.🤍
+                </div>
+            `;
+
+            // depois vai pra próxima página
+            setTimeout(()=>{
+                window.location.href = 'principal.html';
+            },2000);
+
+        },800);
+
     } else {
         erro.style.display = 'block';
     }
 }
-
-// corações subindo
-setInterval(()=>{
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '💖';
-    heart.style.left = Math.random()*100 + 'vw';
-    heart.style.fontSize = (10 + Math.random()*20) + 'px';
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{
-        heart.remove();
-    },5000);
-},500);
-</script>
-
-</body>
-</html>
