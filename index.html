@@ -47,16 +47,27 @@ h1{
 }
 
 .question{
-    margin-top:8px;
-    font-size:13px;
+    margin-top:10px;
+    font-size:18px;
+    font-weight:bold;
     opacity:0;
     color:#e9d5ff;
+    text-align:center;
+
     text-shadow:
-        0 0 3px #fff,
-        0 0 6px #d946ef,
-        0 0 12px #c026d3,
-        0 0 24px #a21caf;
+        0 0 5px #fff,
+        0 0 10px #d946ef,
+        0 0 20px #c026d3,
+        0 0 40px #a21caf;
+
+    animation: pulseNeon 2s infinite;
     transition: opacity 0.6s ease;
+}
+
+@keyframes pulseNeon{
+    0%{text-shadow:0 0 5px #fff,0 0 10px #d946ef,0 0 20px #c026d3;}
+    50%{text-shadow:0 0 10px #fff,0 0 20px #e879f9,0 0 40px #d946ef;}
+    100%{text-shadow:0 0 5px #fff,0 0 10px #d946ef,0 0 20px #c026d3;}
 }
 
 .input-box{position:relative;width:100%;margin-top:15px;}
@@ -139,13 +150,18 @@ function typing(){
 let j = 0;
 function typeQuestion(){
     const q = document.querySelector('.question');
-    q.style.opacity = 1;
+
+    if(j === 0){
+        q.innerHTML = '';
+        q.style.opacity = 1;
+    }
 
     if(j < questionText.length){
         q.innerHTML += questionText.charAt(j);
         j++;
         setTimeout(typeQuestion, 50);
     }
+}
 }
 
 typing();
