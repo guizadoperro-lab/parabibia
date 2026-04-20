@@ -25,7 +25,7 @@ body{
     align-items:flex-end;
 
     background:
-    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)),
     url('beaa.jpg') no-repeat center center/cover;
 
     animation: zoomBg 20s ease-in-out infinite alternate;
@@ -37,19 +37,18 @@ body{
     100%{background-size:110%;}
 }
 
-/* CARD LOGIN */
+/* CARD */
 .container{
-    position:relative;
     width:90%;
     max-width:400px;
     padding:30px;
     margin-bottom:60px;
 
     background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     border-radius:20px;
 
-    box-shadow:0 0 40px rgba(140,0,255,0.4);
+    box-shadow:0 0 60px rgba(140,0,255,0.6);
     text-align:center;
 }
 
@@ -58,25 +57,25 @@ body{
     color:white;
     font-size:22px;
     margin-bottom:10px;
-    letter-spacing:1px;
 }
 
 #frase2{
-    font-size:28px;
+    font-size:30px;
     font-weight:bold;
     margin-bottom:20px;
     opacity:0;
-    color:#b700ff;
+
+    color:#c400ff;
 
     text-shadow:
-    0 0 5px #b700ff,
-    0 0 10px #b700ff,
-    0 0 20px #8a00ff;
+    0 0 10px #c400ff,
+    0 0 20px #a000ff,
+    0 0 40px #7a00ff;
 
     animation: pulseNeon 2s infinite;
 }
 
-/* NEON PULSANDO */
+/* NEON */
 @keyframes pulseNeon{
     0%{opacity:0.6;}
     50%{opacity:1;}
@@ -93,7 +92,6 @@ input{
     padding:12px;
     border:none;
     border-radius:10px;
-    outline:none;
     background:rgba(255,255,255,0.1);
     color:white;
 }
@@ -139,7 +137,6 @@ button{
     position:fixed;
     bottom:-20px;
     color:#ff4da6;
-    font-size:20px;
     animation: subir 6s linear infinite;
 }
 
@@ -148,20 +145,47 @@ button{
     100%{transform:translateY(-100vh); opacity:0;}
 }
 
-/* FADE */
-.fade-out{
-    animation: fadeOut 0.8s forwards;
-}
-.fade-in{
-    animation: fadeIn 1s forwards;
+/* TELA FINAL CINEMÁTICA */
+#finalScreen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 1s;
+    z-index:999;
 }
 
-@keyframes fadeOut{
-    to{opacity:0;}
+.finalText{
+    color:white;
+    font-size:28px;
+    text-align:center;
+
+    opacity:0;
+    transform:scale(0.7);
+
+    text-shadow:
+    0 0 10px #fff,
+    0 0 20px #ff4da6,
+    0 0 40px #ff4da6;
+
+    transition:all 1.5s;
 }
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
+
+#finalScreen.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+#finalScreen.show .finalText{
+    opacity:1;
+    transform:scale(1.1);
 }
 
 </style>
@@ -179,13 +203,19 @@ button{
     </div>
 
     <button onclick="verificarSenha()">Responder 💘</button>
-
     <div class="error" id="erro">Resposta incorreta</div>
+</div>
+
+<!-- TELA FINAL -->
+<div id="finalScreen">
+    <div class="finalText">
+        EU SEI QUE É VOCÊ MEU AMOR.🤍
+    </div>
 </div>
 
 <script>
 
-// FRASE 1 (digitando)
+/* FRASE 1 */
 const frase1 = "eu sei que é vc.";
 let i = 0;
 
@@ -199,6 +229,7 @@ function digitar(){
     }
 }
 
+/* FRASE 2 */
 function mostrarFrase2(){
     const f2 = document.getElementById("frase2");
     const texto = "isso é ABSOLUTE?";
@@ -219,7 +250,7 @@ function mostrarFrase2(){
 
 digitar();
 
-// OLHO SENHA
+/* OLHO */
 function toggleSenha(){
     const input = document.getElementById('senha');
     const eye = document.getElementById('eye');
@@ -233,70 +264,47 @@ function toggleSenha(){
     }
 }
 
-// SENHA
+/* VERIFICAR SENHA */
 function verificarSenha(){
     const senha = document.getElementById('senha').value;
     const erro = document.getElementById('erro');
 
     if(senha === 'GUIBI'){
 
-        // Fade out suave
-        document.body.style.transition = "opacity 0.8s";
-        document.body.style.opacity = "0";
+        // escurece fundo
+        document.body.style.transition = "0.8s";
+        document.body.style.filter = "brightness(0.3)";
 
+        // ativa tela final
         setTimeout(()=>{
+            document.getElementById("finalScreen").classList.add("show");
+        },400);
 
-            // NOVA TELA
-            document.body.innerHTML = `
-                <div id="finalMsg" style="
-                    height:100vh;
-                    display:flex;
-                    justify-content:center;
-                    align-items:center;
-                    background:black;
-                    color:white;
-                    font-size:24px;
-                    text-align:center;
-                    padding:20px;
-                    opacity:0;
-                ">
-                    EU SEI QUE É VOCÊ MEU AMOR.🤍
-                </div>
-            `;
-
-            // Fade IN da mensagem
-            setTimeout(()=>{
-                document.getElementById("finalMsg").style.transition = "opacity 1s";
-                document.getElementById("finalMsg").style.opacity = "1";
-            },100);
-
-            // Tempo maior pra aparecer (antes tava muito rápido)
-            setTimeout(()=>{
-                window.location.href = 'principal.html';
-            },3000);
-
-        },800);
+        // redireciona
+        setTimeout(()=>{
+            window.location.href = 'principal.html';
+        },3500);
 
     } else {
         erro.style.display = 'block';
     }
 }
 
-// CORAÇÕES
+/* CORAÇÕES */
 function criarCoracao(){
     const heart = document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML = "💖";
 
     heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize = (10 + Math.random()*20) + "px";
+    heart.style.fontSize = (12 + Math.random()*20) + "px";
 
     document.body.appendChild(heart);
 
     setTimeout(()=>{heart.remove();},6000);
 }
 
-setInterval(criarCoracao, 500);
+setInterval(criarCoracao, 400);
 
 </script>
 
