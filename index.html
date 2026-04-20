@@ -10,7 +10,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI', sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
 
 html,body{
@@ -25,98 +25,100 @@ body{
     align-items:flex-end;
 
     background:
-    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)),
+    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)),
     url('beaa.jpg') no-repeat center center/cover;
 
     animation: zoomBg 20s ease-in-out infinite alternate;
 }
 
-/* ZOOM FUNDO */
+/* zoom fundo */
 @keyframes zoomBg{
-    0%{background-size:100%;}
-    100%{background-size:110%;}
+    from{background-size:100%;}
+    to{background-size:110%;}
 }
 
-/* CARD */
+/* container */
 .container{
     width:90%;
     max-width:400px;
     padding:30px;
-    margin-bottom:60px;
+    margin-bottom:40px;
 
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(12px);
+    background:rgba(0,0,0,0.35);
+    backdrop-filter: blur(15px);
+
     border-radius:20px;
-
-    box-shadow:0 0 60px rgba(140,0,255,0.6);
     text-align:center;
+
+    box-shadow:0 0 40px rgba(255,0,150,0.4);
 }
 
-/* FRASES */
-#frase1{
-    color:white;
+/* títulos */
+#title1{
     font-size:22px;
+    color:white;
     margin-bottom:10px;
 }
 
-#frase2{
-    font-size:30px;
+#title2{
+    font-size:28px;
     font-weight:bold;
     margin-bottom:20px;
-    opacity:0;
 
-    color:#c400ff;
+    color:#b84dff;
 
     text-shadow:
-    0 0 10px #c400ff,
-    0 0 20px #a000ff,
-    0 0 40px #7a00ff;
+    0 0 5px #b84dff,
+    0 0 15px #b84dff,
+    0 0 30px #ff00ff;
 
-    animation: pulseNeon 2s infinite;
+    animation: neonPulse 2s infinite alternate;
 }
 
-/* NEON */
-@keyframes pulseNeon{
-    0%{opacity:0.6;}
-    50%{opacity:1;}
-    100%{opacity:0.6;}
+@keyframes neonPulse{
+    from{opacity:0.6;}
+    to{opacity:1;}
 }
 
-/* INPUT */
+/* input */
 .input-box{
     position:relative;
+    margin-bottom:20px;
 }
 
 input{
     width:100%;
-    padding:12px;
+    padding:15px;
     border:none;
     border-radius:10px;
+    outline:none;
+
     background:rgba(255,255,255,0.1);
     color:white;
 }
 
+/* olho */
 .eye{
     position:absolute;
-    right:10px;
+    right:15px;
     top:50%;
     transform:translateY(-50%);
     cursor:pointer;
 }
 
-/* BOTÃO */
+/* botão */
 button{
     width:100%;
-    margin-top:15px;
-    padding:12px;
+    padding:15px;
     border:none;
-    border-radius:10px;
-    background:#ff004c;
+    border-radius:12px;
+
+    background:linear-gradient(45deg,#ff0055,#ff3ca6);
     color:white;
     font-weight:bold;
     cursor:pointer;
 
-    animation: pulse 2s infinite;
+    animation:pulse 2s infinite;
 }
 
 @keyframes pulse{
@@ -125,77 +127,75 @@ button{
     100%{transform:scale(1);}
 }
 
-/* ERRO */
 .error{
-    margin-top:10px;
     color:#ff8080;
+    margin-top:10px;
     display:none;
 }
 
-/* CORAÇÕES */
-.heart{
-    position:fixed;
-    bottom:-20px;
-    color:#ff4da6;
-    animation: subir 6s linear infinite;
-}
-
-@keyframes subir{
-    0%{transform:translateY(0); opacity:1;}
-    100%{transform:translateY(-100vh); opacity:0;}
-}
-
-/* TELA FINAL CINEMÁTICA */
-#finalScreen{
+/* tela final CINEMATICA */
+.final{
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
+
     background:black;
+
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
+
     opacity:0;
-    pointer-events:none;
-    transition:opacity 1s;
-    z-index:999;
+    animation:fadeIn 1.5s forwards;
 }
 
-.finalText{
-    color:white;
-    font-size:28px;
+.final h1{
+    font-size:32px;
     text-align:center;
 
-    opacity:0;
-    transform:scale(0.7);
+    background: linear-gradient(90deg, #ffffff, #ff4dff, #a64dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 
     text-shadow:
-    0 0 10px #fff,
-    0 0 20px #ff4da6,
-    0 0 40px #ff4da6;
+    0 0 10px rgba(255,255,255,0.6),
+    0 0 25px rgba(255,0,255,0.7),
+    0 0 40px rgba(160,0,255,0.9);
 
-    transition:all 1.5s;
+    animation:zoomText 3s ease forwards;
 }
 
-#finalScreen.show{
-    opacity:1;
-    pointer-events:auto;
+.final span{
+    font-size:40px;
+    margin-top:20px;
+
+    animation:heartBeat 1.5s infinite;
 }
 
-#finalScreen.show .finalText{
-    opacity:1;
-    transform:scale(1.1);
+@keyframes fadeIn{
+    to{opacity:1;}
 }
 
+@keyframes zoomText{
+    from{transform:scale(0.8); opacity:0;}
+    to{transform:scale(1); opacity:1;}
+}
+
+@keyframes heartBeat{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-    <div id="frase1"></div>
-    <div id="frase2"></div>
+    <h1 id="title1"></h1>
+    <h1 id="title2"></h1>
 
     <div class="input-box">
         <input type="password" id="senha" placeholder="Digite a resposta">
@@ -206,51 +206,36 @@ button{
     <div class="error" id="erro">Resposta incorreta</div>
 </div>
 
-<!-- TELA FINAL -->
-<div id="finalScreen">
-    <div class="finalText">
-        EU SEI QUE É VOCÊ MEU AMOR.🤍
-    </div>
-</div>
-
 <script>
-
-/* FRASE 1 */
-const frase1 = "eu sei que é vc.";
+// frase 1
+const text1 = "eu sei que é vc.";
 let i = 0;
 
-function digitar(){
-    if(i < frase1.length){
-        document.getElementById("frase1").innerHTML += frase1.charAt(i);
+function typing1(){
+    if(i < text1.length){
+        document.getElementById('title1').innerHTML += text1.charAt(i);
         i++;
-        setTimeout(digitar, 60);
+        setTimeout(typing1, 60);
     } else {
-        setTimeout(mostrarFrase2, 500);
+        setTimeout(typing2, 500);
     }
 }
 
-/* FRASE 2 */
-function mostrarFrase2(){
-    const f2 = document.getElementById("frase2");
-    const texto = "isso é ABSOLUTE?";
-    let j = 0;
+// frase 2 (neon)
+const text2 = "isso é ABSOLUTE?";
+let j = 0;
 
-    f2.innerHTML = "";
-    f2.style.opacity = 1;
-
-    function escrever(){
-        if(j < texto.length){
-            f2.innerHTML += texto.charAt(j);
-            j++;
-            setTimeout(escrever, 70);
-        }
+function typing2(){
+    if(j < text2.length){
+        document.getElementById('title2').innerHTML += text2.charAt(j);
+        j++;
+        setTimeout(typing2, 70);
     }
-    escrever();
 }
 
-digitar();
+typing1();
 
-/* OLHO */
+// olho senha
 function toggleSenha(){
     const input = document.getElementById('senha');
     const eye = document.getElementById('eye');
@@ -264,48 +249,27 @@ function toggleSenha(){
     }
 }
 
-/* VERIFICAR SENHA */
+// verificar senha
 function verificarSenha(){
     const senha = document.getElementById('senha').value;
     const erro = document.getElementById('erro');
 
     if(senha === 'GUIBI'){
+        document.body.innerHTML = `
+        <div class="final">
+            <h1>EU SEI QUE É VOCÊ MEU AMOR</h1>
+            <span>🤍</span>
+        </div>
+        `;
 
-        // escurece fundo
-        document.body.style.transition = "0.8s";
-        document.body.style.filter = "brightness(0.3)";
-
-        // ativa tela final
         setTimeout(()=>{
-            document.getElementById("finalScreen").classList.add("show");
-        },400);
-
-        // redireciona
-        setTimeout(()=>{
-            window.location.href = 'principal.html';
-        },3500);
+            window.location.href = "principal.html";
+        },4000);
 
     } else {
         erro.style.display = 'block';
     }
 }
-
-/* CORAÇÕES */
-function criarCoracao(){
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "💖";
-
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize = (12 + Math.random()*20) + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{heart.remove();},6000);
-}
-
-setInterval(criarCoracao, 400);
-
 </script>
 
 </body>
