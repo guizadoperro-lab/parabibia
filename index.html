@@ -10,7 +10,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+    font-family:'Segoe UI', sans-serif;
 }
 
 html,body{
@@ -22,76 +22,80 @@ body{
     height:100dvh;
     display:flex;
     justify-content:center;
-    align-items:flex-start;
+    align-items:flex-end;
+
     background:
-    linear-gradient(rgba(255,255,255,0.08), rgba(0,0,0,0.4)),
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
     url('beaa.jpg') no-repeat center center/cover;
+
     animation: zoomBg 20s ease-in-out infinite alternate;
 }
 
-/* CONTAINER */
+/* ZOOM FUNDO */
+@keyframes zoomBg{
+    0%{background-size:100%;}
+    100%{background-size:110%;}
+}
+
+/* CARD LOGIN */
 .container{
-    margin-top:55vh;
     position:relative;
-    background:rgba(255,255,255,0.03);
-    backdrop-filter: blur(25px);
-    padding:35px 25px;
-    border-radius:25px;
-    text-align:center;
-    color:#fff;
     width:90%;
-    max-width:380px;
-    box-shadow:0 0 30px rgba(255,0,100,0.2);
-    animation:fadeIn 1s ease;
-}
+    max-width:400px;
+    padding:30px;
+    margin-bottom:60px;
 
-/* TÍTULO */
-h1{
-    white-space: nowrap;
-    font-size: clamp(14px, 4vw, 18px);
-    letter-spacing:2px;
-    color:#e9d5ff;
-    text-shadow:
-        0 0 3px #fff,
-        0 0 6px #d946ef,
-        0 0 12px #c026d3,
-        0 0 24px #a21caf;
-}
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    border-radius:20px;
 
-/* PERGUNTA */
-.question{
-    margin-top:10px;
-    font-size:20px;
-    font-weight:bold;
-    opacity:0;
-    color:#e9d5ff;
+    box-shadow:0 0 40px rgba(140,0,255,0.4);
     text-align:center;
+}
+
+/* FRASES */
+#frase1{
+    color:white;
+    font-size:22px;
+    margin-bottom:10px;
+    letter-spacing:1px;
+}
+
+#frase2{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:20px;
+    opacity:0;
+    color:#b700ff;
 
     text-shadow:
-        0 0 5px #fff,
-        0 0 10px #d946ef,
-        0 0 20px #c026d3,
-        0 0 40px #a21caf;
+    0 0 5px #b700ff,
+    0 0 10px #b700ff,
+    0 0 20px #8a00ff;
 
     animation: pulseNeon 2s infinite;
-    transition: opacity 0.6s ease;
+}
+
+/* NEON PULSANDO */
+@keyframes pulseNeon{
+    0%{opacity:0.6;}
+    50%{opacity:1;}
+    100%{opacity:0.6;}
 }
 
 /* INPUT */
 .input-box{
     position:relative;
-    width:100%;
-    margin-top:15px;
 }
 
 input{
     width:100%;
-    padding:12px 40px 12px 12px;
+    padding:12px;
     border:none;
     border-radius:10px;
     outline:none;
-    background:rgba(255,255,255,0.08);
-    color:#fff;
+    background:rgba(255,255,255,0.1);
+    color:white;
 }
 
 .eye{
@@ -104,15 +108,23 @@ input{
 
 /* BOTÃO */
 button{
-    margin-top:15px;
     width:100%;
+    margin-top:15px;
     padding:12px;
     border:none;
     border-radius:10px;
-    background:linear-gradient(45deg,#ff4d88,#ff0055);
-    color:#fff;
+    background:#ff004c;
+    color:white;
     font-weight:bold;
     cursor:pointer;
+
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
 }
 
 /* ERRO */
@@ -124,108 +136,114 @@ button{
 
 /* CORAÇÕES */
 .heart{
-    position:absolute;
-    bottom:0;
-    color:#ff4d88;
-    animation:float 5s linear infinite;
+    position:fixed;
+    bottom:-20px;
+    color:#ff4da6;
+    font-size:20px;
+    animation: subir 6s linear infinite;
 }
 
-/* ANIMAÇÕES */
-@keyframes float{
-    0%{transform:translateY(0);opacity:0;}
-    50%{opacity:1;}
-    100%{transform:translateY(-100vh);opacity:0;}
+@keyframes subir{
+    0%{transform:translateY(0); opacity:1;}
+    100%{transform:translateY(-100vh); opacity:0;}
 }
 
-@keyframes zoomBg{
-    0%{background-size:100%;}
-    100%{background-size:110%;}
+/* FADE */
+.fade-out{
+    animation: fadeOut 0.8s forwards;
+}
+.fade-in{
+    animation: fadeIn 1s forwards;
 }
 
+@keyframes fadeOut{
+    to{opacity:0;}
+}
 @keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
+    from{opacity:0;}
+    to{opacity:1;}
 }
 
-@keyframes pulseNeon{
-    0%{text-shadow:0 0 5px #fff,0 0 10px #d946ef,0 0 20px #c026d3;}
-    50%{text-shadow:0 0 10px #fff,0 0 25px #e879f9,0 0 50px #d946ef;}
-    100%{text-shadow:0 0 5px #fff,0 0 10px #d946ef,0 0 20px #c026d3;}
-}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
-    <h1 id="title"></h1>
-    <div class="question"></div>
+    <div id="frase1"></div>
+    <div id="frase2"></div>
 
     <div class="input-box">
         <input type="password" id="senha" placeholder="Digite a resposta">
-        <span class="eye" onclick="toggleSenha()">👁️</span>
+        <span class="eye" onclick="toggleSenha()" id="eye">👁️</span>
     </div>
 
     <button onclick="verificarSenha()">Responder 💘</button>
 
     <div class="error" id="erro">Resposta incorreta</div>
-
 </div>
 
 <script>
-const title = document.getElementById('title');
-const question = document.querySelector('.question');
 
-const text = "eu sei que é vc.";
-const questionText = "isso é ABSOLUTE?";
-
+// FRASE 1 (digitando)
+const frase1 = "eu sei que é vc.";
 let i = 0;
 
-function typing(){
-    if(i < text.length){
-        title.innerHTML += text.charAt(i);
+function digitar(){
+    if(i < frase1.length){
+        document.getElementById("frase1").innerHTML += frase1.charAt(i);
         i++;
-        setTimeout(typing, 60);
+        setTimeout(digitar, 60);
     } else {
-        setTimeout(typeQuestion, 600);
+        setTimeout(mostrarFrase2, 500);
     }
 }
 
-let j = 0;
+function mostrarFrase2(){
+    const f2 = document.getElementById("frase2");
+    const texto = "isso é ABSOLUTE?";
+    let j = 0;
 
-function typeQuestion(){
-    if(j === 0){
-        question.innerHTML = "";
-        question.style.opacity = 1;
-    }
+    f2.innerHTML = "";
+    f2.style.opacity = 1;
 
-    if(j < questionText.length){
-        question.innerHTML += questionText.charAt(j);
-        j++;
-        setTimeout(typeQuestion, 50);
+    function escrever(){
+        if(j < texto.length){
+            f2.innerHTML += texto.charAt(j);
+            j++;
+            setTimeout(escrever, 70);
+        }
     }
+    escrever();
 }
 
-typing();
+digitar();
 
+// OLHO SENHA
 function toggleSenha(){
     const input = document.getElementById('senha');
-    input.type = input.type === 'password' ? 'text' : 'password';
+    const eye = document.getElementById('eye');
+
+    if(input.type === 'password'){
+        input.type = 'text';
+        eye.textContent = '🙈';
+    } else {
+        input.type = 'password';
+        eye.textContent = '👁️';
+    }
 }
 
+// SENHA
 function verificarSenha(){
     const senha = document.getElementById('senha').value;
     const erro = document.getElementById('erro');
 
     if(senha === 'GUIBI'){
 
-        // fade out da tela atual
         document.body.classList.add('fade-out');
 
         setTimeout(()=>{
 
-            // troca conteúdo
             document.body.innerHTML = `
                 <div style="
                     height:100vh;
@@ -234,7 +252,7 @@ function verificarSenha(){
                     align-items:center;
                     background:black;
                     color:white;
-                    font-size:22px;
+                    font-size:24px;
                     text-align:center;
                     padding:20px;
                 " class="fade-in">
@@ -242,7 +260,6 @@ function verificarSenha(){
                 </div>
             `;
 
-            // depois vai pra próxima página
             setTimeout(()=>{
                 window.location.href = 'principal.html';
             },2000);
@@ -253,3 +270,24 @@ function verificarSenha(){
         erro.style.display = 'block';
     }
 }
+
+// CORAÇÕES
+function criarCoracao(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (10 + Math.random()*20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{heart.remove();},6000);
+}
+
+setInterval(criarCoracao, 500);
+
+</script>
+
+</body>
+</html>
