@@ -240,12 +240,15 @@ function verificarSenha(){
 
     if(senha === 'GUIBI'){
 
-        document.body.classList.add('fade-out');
+        // Fade out suave
+        document.body.style.transition = "opacity 0.8s";
+        document.body.style.opacity = "0";
 
         setTimeout(()=>{
 
+            // NOVA TELA
             document.body.innerHTML = `
-                <div style="
+                <div id="finalMsg" style="
                     height:100vh;
                     display:flex;
                     justify-content:center;
@@ -255,14 +258,22 @@ function verificarSenha(){
                     font-size:24px;
                     text-align:center;
                     padding:20px;
-                " class="fade-in">
+                    opacity:0;
+                ">
                     EU SEI QUE É VOCÊ MEU AMOR.🤍
                 </div>
             `;
 
+            // Fade IN da mensagem
+            setTimeout(()=>{
+                document.getElementById("finalMsg").style.transition = "opacity 1s";
+                document.getElementById("finalMsg").style.opacity = "1";
+            },100);
+
+            // Tempo maior pra aparecer (antes tava muito rápido)
             setTimeout(()=>{
                 window.location.href = 'principal.html';
-            },2000);
+            },3000);
 
         },800);
 
