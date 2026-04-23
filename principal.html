@@ -48,17 +48,14 @@ body{
     text-align:center;
 
     box-shadow:
-    0 0 8px rgba(0,150,255,0.4),
-    0 0 20px rgba(0,150,255,0.5),
-    0 0 35px rgba(0,150,255,0.6);
+    0 0 8px rgba(0,150,255,0.3),
+    0 0 20px rgba(0,150,255,0.4);
 
-    /* ANIMAÇÃO INICIAL (ESCONDIDO) */
     opacity:0;
     transform:translateY(40px);
     transition:all 1s ease;
 }
 
-/* QUANDO APARECE */
 .section.show{
     opacity:1;
     transform:translateY(0);
@@ -71,11 +68,41 @@ img{
     margin-bottom:15px;
 }
 
-/* TEXTO */
+/* FOTO DELA (ROSA) */
+.img-dela{
+    box-shadow:
+    0 0 8px rgba(255, 120, 200, 0.5),
+    0 0 20px rgba(255, 120, 200, 0.6),
+    0 0 35px rgba(255, 120, 200, 0.7);
+}
+
+/* SUA FOTO (AZUL) */
+.img-eu{
+    box-shadow:
+    0 0 8px rgba(0,150,255,0.4),
+    0 0 20px rgba(0,150,255,0.5),
+    0 0 35px rgba(0,150,255,0.6);
+}
+
+/* TEXTO BASE */
 .text{
-    color:white;
     font-size:20px;
     line-height:1.6;
+}
+
+/* TEXTO DELA (ROSA) */
+.text-dela{
+    color:#ffd6f2;
+
+    text-shadow:
+    0 0 5px #ff8ad6,
+    0 0 15px #ff4dff,
+    0 0 25px #ff4dff;
+}
+
+/* TEXTO PADRÃO (AZUL) */
+.text{
+    color:white;
 
     text-shadow:
     0 0 5px #fff,
@@ -93,26 +120,26 @@ img{
 
 <body>
 
-<!-- BLOCO 1 -->
+<!-- BLOCO DELA -->
 <div class="section">
-    <img src="beaz2.jpg">
-    <div class="text">Oii meu amor, sabe quem é essa daqui? isso mesmo, é você, a Minha Princesinha. Só de imaginar que uma criança desse tamanhozinho seria a pessoa pelo quem eu me apaixonaria no futuro ja me faz esta nostálgico, você era tão bonitinha quando era criança, fico muito feliz por você ter crescido tão bem meu amor</div>
+    <img src="beaz2.jpg" class="img-dela">
+    <div class="text text-dela">Oii meu amor, sabe quem é essa daqui encima? isso mesmo, é você, a Minha Princesinha. Só de imaginar que uma criança desse tamanhozinho seria a pessoa pelo quem eu me apaixonaria no futuro ja me faz esta nostálgico, você era tão bonitinha quando era criança, fico muito feliz por você ter crescido tão bem meu amor</div>
 </div>
 
-<!-- BLOCO 2 -->
+<!-- BLOCO SEU -->
 <div class="section">
-    <img src="gui2.jpg">
+    <img src="gui2.jpg" class="img-eu">
     <div class="label">olha eu</div>
 </div>
 
-<!-- BLOCO 3 (EXTRA PRA TESTE) -->
+<!-- BLOCO EXTRA -->
 <div class="section">
-    <div class="text">cada momento com você é especial ✨</div>
+    <div class="text">cada momento com você é especial 💙</div>
 </div>
 
 <script>
 
-/* DETECTA SCROLL */
+/* SCROLL CINEMATOGRÁFICO */
 const sections = document.querySelectorAll('.section');
 
 function mostrarAoRolar(){
@@ -128,8 +155,6 @@ function mostrarAoRolar(){
 }
 
 window.addEventListener('scroll', mostrarAoRolar);
-
-/* ATIVA NO INÍCIO */
 mostrarAoRolar();
 
 </script>
