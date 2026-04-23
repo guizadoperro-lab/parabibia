@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Você 💜</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+html,body{
+    height:100%;
+    overflow:hidden;
+}
+
+/* FUNDO */
+body{
+    height:100dvh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+    url('beaa.jpg') no-repeat center center/cover;
+
+    animation: zoomBg 20s ease-in-out infinite alternate;
+}
+
+/* zoom suave */
+@keyframes zoomBg{
+    0%{background-size:100%;}
+    100%{background-size:110%;}
+}
+
+/* QUADRO */
+.box{
+    width:90%;
+    max-width:500px;
+    padding:30px;
+
+    background:rgba(0,0,0,0.4);
+    backdrop-filter: blur(15px);
+
+    border-radius:20px;
+    text-align:center;
+
+    box-shadow:0 0 50px rgba(180,0,255,0.5);
+
+    opacity:0;
+    transform:translateY(30px);
+
+    animation: aparecer 1.5s forwards;
+}
+
+/* animação entrada */
+@keyframes aparecer{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* TEXTO */
+#mensagem{
+    font-size:22px;
+    color:white;
+    line-height:1.5;
+
+    text-shadow:
+    0 0 5px #fff,
+    0 0 10px #c400ff,
+    0 0 20px #7a00ff;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <div id="mensagem"></div>
+</div>
+
+<script>
+
+/* MENSAGEM TESTE */
+const texto = "eu te amo meu amor 💜";
+let i = 0;
+
+function escrever(){
+    if(i < texto.length){
+        document.getElementById("mensagem").innerHTML += texto.charAt(i);
+        i++;
+        setTimeout(escrever, 60);
+    }
+}
+
+setTimeout(escrever, 800);
+
+</script>
+
+</body>
+</html>
