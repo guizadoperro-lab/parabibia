@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Você 💜</title>
+<title>Para Você 💙</title>
 
 <style>
 *{
@@ -26,8 +26,8 @@ body{
     align-items:center;
 
     background:
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
-    url('beaa.jpg') no-repeat center center/cover;
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
+    url('gui1.jpg') no-repeat center center/cover;
 
     animation: zoomBg 20s ease-in-out infinite alternate;
 }
@@ -44,13 +44,17 @@ body{
     max-width:500px;
     padding:30px;
 
-    background:rgba(0,0,0,0.4);
+    background:rgba(0,0,0,0.45);
     backdrop-filter: blur(15px);
 
     border-radius:20px;
     text-align:center;
 
-    box-shadow:0 0 50px rgba(180,0,255,0.5);
+    /* NEON AZUL */
+    box-shadow:
+    0 0 10px rgba(0,150,255,0.6),
+    0 0 25px rgba(0,150,255,0.7),
+    0 0 50px rgba(0,150,255,0.9);
 
     opacity:0;
     transform:translateY(30px);
@@ -70,12 +74,12 @@ body{
 #mensagem{
     font-size:22px;
     color:white;
-    line-height:1.5;
+    line-height:1.6;
 
     text-shadow:
     0 0 5px #fff,
-    0 0 10px #c400ff,
-    0 0 20px #7a00ff;
+    0 0 10px #00bfff,
+    0 0 20px #008cff;
 }
 
 </style>
@@ -90,7 +94,7 @@ body{
 <script>
 
 /* MENSAGEM TESTE */
-const texto = "eu te amo meu amor 💜";
+const texto = "eu te amo meu amor 💙";
 let i = 0;
 
 function escrever(){
