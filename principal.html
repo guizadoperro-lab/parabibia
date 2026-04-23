@@ -13,19 +13,14 @@
     font-family:'Segoe UI', sans-serif;
 }
 
-/* PERMITE ROLAGEM */
-html,body{
-    min-height:100%;
-    overflow-y:auto;
+/* SCROLL SUAVE */
+html{
+    scroll-behavior:smooth;
 }
 
-/* FUNDO */
 body{
     min-height:100dvh;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    padding:30px 0;
+    padding:40px 0;
 
     background:
     linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
@@ -39,12 +34,12 @@ body{
     100%{background-size:110%;}
 }
 
-/* QUADRO */
-.box{
+/* BLOCO */
+.section{
     width:90%;
     max-width:500px;
+    margin:60px auto;
     padding:25px;
-    margin-bottom:30px;
 
     background:rgba(0,0,0,0.45);
     backdrop-filter: blur(15px);
@@ -52,81 +47,92 @@ body{
     border-radius:20px;
     text-align:center;
 
-    /* NEON AZUL SUAVE */
     box-shadow:
     0 0 8px rgba(0,150,255,0.4),
     0 0 20px rgba(0,150,255,0.5),
     0 0 35px rgba(0,150,255,0.6);
 
+    /* ANIMAÇÃO INICIAL (ESCONDIDO) */
     opacity:0;
-    transform:translateY(20px);
-    animation: aparecer 1.5s forwards;
+    transform:translateY(40px);
+    transition:all 1s ease;
 }
 
-@keyframes aparecer{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+/* QUANDO APARECE */
+.section.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
-/* IMAGEM TOPO */
-.top-img{
+/* IMAGENS */
+img{
     width:100%;
     border-radius:15px;
     margin-bottom:15px;
 }
 
 /* TEXTO */
-#mensagem{
-    font-size:20px;
+.text{
     color:white;
+    font-size:20px;
     line-height:1.6;
-    margin-bottom:20px;
 
     text-shadow:
     0 0 5px #fff,
-    0 0 8px #00bfff;
+    0 0 10px #00bfff;
 }
 
-/* IMAGEM DE BAIXO */
-.bottom-img{
-    width:100%;
-    border-radius:15px;
-    margin-top:10px;
-}
-
-/* TEXTO "OLHA EU" */
+/* LABEL */
 .label{
-    margin-top:8px;
-    font-size:16px;
+    margin-top:10px;
     color:#cceeff;
-
-    text-shadow:
-    0 0 5px #00bfff;
+    font-size:16px;
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="box">
-
-    <!-- IMAGEM DE CIMA -->
-    <img src="beaz2.jpg" class="top-img">
-
-    <!-- MENSAGEM -->
-    <div id="mensagem">
-        Oii meu amor, sabe quem é essa daqui? isso mesmo, é você, a Minha Princesinha. Só de imaginar que uma criança desse tamanhozinho seria a pessoa pelo quem eu me apaixonaria no futuro ja me faz esta nostálgico, você era tão bonitinha quando era criança, fico muito feliz por você ter crescido tão bem meu amor 💙
-    </div>
-
-    <!-- IMAGEM DE BAIXO -->
-    <img src="gui2.jpg" class="bottom-img">
-
-    <div class="label">olha eu</div>
-
+<!-- BLOCO 1 -->
+<div class="section">
+    <img src="beaz2.jpg">
+    <div class="text">Oii meu amor, sabe quem é essa daqui? isso mesmo, é você, a Minha Princesinha. Só de imaginar que uma criança desse tamanhozinho seria a pessoa pelo quem eu me apaixonaria no futuro ja me faz esta nostálgico, você era tão bonitinha quando era criança, fico muito feliz por você ter crescido tão bem meu amor</div>
 </div>
+
+<!-- BLOCO 2 -->
+<div class="section">
+    <img src="gui2.jpg">
+    <div class="label">olha eu</div>
+</div>
+
+<!-- BLOCO 3 (EXTRA PRA TESTE) -->
+<div class="section">
+    <div class="text">cada momento com você é especial ✨</div>
+</div>
+
+<script>
+
+/* DETECTA SCROLL */
+const sections = document.querySelectorAll('.section');
+
+function mostrarAoRolar(){
+    const trigger = window.innerHeight * 0.85;
+
+    sections.forEach(sec=>{
+        const top = sec.getBoundingClientRect().top;
+
+        if(top < trigger){
+            sec.classList.add('show');
+        }
+    });
+}
+
+window.addEventListener('scroll', mostrarAoRolar);
+
+/* ATIVA NO INÍCIO */
+mostrarAoRolar();
+
+</script>
 
 </body>
 </html>
