@@ -22,12 +22,11 @@ body{
     overflow-x:hidden;
 }
 
-/* SCROLL SUAVE */
 html{
     scroll-behavior:smooth;
 }
 
-/* SEÇÕES */
+/* SEÇÃO */
 .section{
     min-height:100vh;
     display:flex;
@@ -35,6 +34,7 @@ html{
     justify-content:center;
     align-items:center;
     padding:30px;
+
     opacity:0;
     transform:translateY(80px) scale(0.95);
     transition:all 1.2s ease;
@@ -45,7 +45,7 @@ html{
     transform:translateY(0) scale(1);
 }
 
-/* CONTAINER DAS FOTOS */
+/* FOTOS */
 .fotos-dela{
     display:flex;
     justify-content:center;
@@ -54,40 +54,95 @@ html{
     margin-bottom:25px;
 }
 
-/* IMAGENS */
 .img-dela{
     border-radius:15px;
 
     box-shadow:
-    0 0 10px #ff66cc,
-    0 0 25px #ff33cc,
-    0 0 40px #ff00ff;
+    0 0 6px rgba(255,102,204,0.5),
+    0 0 12px rgba(255,51,204,0.4),
+    0 0 20px rgba(255,0,255,0.3);
 
     animation: float 6s ease-in-out infinite alternate;
 }
 
-/* PRINCIPAL */
 .img-dela.grande{
     width:65%;
-    animation-delay:0s;
 }
 
-/* MENOR */
 .img-dela.pequena{
     width:35%;
     transform:rotate(-5deg);
     opacity:0.9;
-    animation-delay:1s;
 }
 
-/* MOVIMENTO LEVE (cinemático) */
+/* MOVIMENTO CINEMÁTICO */
 @keyframes float{
     0%{transform:translateY(0) scale(1);}
     100%{transform:translateY(-10px) scale(1.02);}
 }
 
+/* TEXTO BOX (VIDRO + ANIMAÇÃO PREMIUM) */
+.text-box{
+    position:relative;
+
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(12px);
+
+    padding:20px;
+    border-radius:15px;
+
+    overflow:hidden;
+}
+
+/* FUNDO ANIMADO */
+.text-box::before{
+    content:'';
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+
+    background: radial-gradient(circle, rgba(255,0,150,0.08), transparent 60%);
+    animation: glowMove 8s linear infinite;
+}
+
+@keyframes glowMove{
+    0%{transform:translate(0,0);}
+    50%{transform:translate(20%,20%);}
+    100%{transform:translate(0,0);}
+}
+
+/* BRILHO PASSANDO */
+.text-box::after{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent
+    );
+
+    animation: shine 5s infinite;
+}
+
+@keyframes shine{
+    0%{left:-100%;}
+    50%{left:100%;}
+    100%{left:100%;}
+}
+
 /* TEXTO DELA */
 .text-dela{
+    position:relative;
+    z-index:2;
+
     font-size:20px;
     line-height:1.6;
     text-align:center;
@@ -117,7 +172,6 @@ html{
 
 <body>
 
-<!-- SEÇÃO DELA -->
 <div class="section" id="sec1">
 
     <div class="fotos-dela">
@@ -125,17 +179,19 @@ html{
         <img src="beaz1.jpg" class="img-dela pequena fade-img">
     </div>
 
-    <div class="text-dela">
-        Oii meu amor, sabe quem é essa daqui? isso mesmo, é você, a Minha Princesinha. 
-        Só de imaginar que uma criança desse tamanhozinho seria a pessoa pelo quem eu me apaixonaria no futuro 
-        ja me faz esta nostálgico, você era tão bonitinha quando era criança, fico muito feliz por você ter crescido tão bem meu amor 💖
+    <div class="text-box">
+        <div class="text-dela">
+            Oii meu amor, sabe quem é essa daqui? isso mesmo, é você, a Minha Princesinha. 
+            Só de imaginar que uma criança desse tamanhozinho seria a pessoa pelo quem eu me apaixonaria no futuro 
+            ja me faz esta nostálgico, você era tão bonitinha quando era criança, fico muito feliz por você ter crescido tão bem meu amor 💖
+        </div>
     </div>
 
 </div>
 
 <script>
 
-/* MOSTRAR SEÇÃO (cinemático) */
+/* ANIMAÇÃO AO ENTRAR NA TELA */
 function mostrarElemento(){
     const sec = document.querySelectorAll('.section');
     const imgs = document.querySelectorAll('.fade-img');
