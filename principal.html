@@ -13,13 +13,20 @@
     font-family:'Segoe UI', sans-serif;
 }
 
+/* SCROLL SUAVE */
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     background: url('gui1.jpg') center/cover no-repeat fixed;
     color:white;
+
     overflow-x:hidden;
+    overflow-y:auto;
 }
 
-/* FUNDO PREMIUM ANIMADO */
+/* FUNDO PREMIUM */
 body::after{
     content:'';
     position:fixed;
@@ -36,38 +43,54 @@ body::after{
     100%{filter:blur(25px);}
 }
 
-/* SCROLL CINEMÁTICO */
+/* SEÇÕES AJUSTADAS */
 section{
-    min-height:100vh;
+    min-height:auto;
+    padding:60px 20px;
     display:flex;
-    flex-direction:column;
     justify-content:center;
-    align-items:center;
-    padding:30px;
+}
+
+/* aproxima seções */
+section + section{
+    margin-top:-30px;
+}
+
+/* CARD */
+.card{
+    width:100%;
+    max-width:500px;
+
+    background: rgba(0,0,0,0.45);
+    padding:25px;
+    border-radius:20px;
+    backdrop-filter: blur(10px);
+
     text-align:center;
 }
 
-/* IMAGENS DELA */
+/* FOTOS DELA */
 .fotos-dela{
     display:flex;
-    gap:15px;
+    justify-content:center;
+    gap:12px;
     margin-bottom:20px;
 }
 
 .fotos-dela img{
-    width:160px;
+    width:45%;
     border-radius:15px;
 
     box-shadow:
-    0 0 15px rgba(255, 0, 150, 0.4),
-    0 0 30px rgba(255, 0, 200, 0.2);
+    0 0 10px rgba(255, 0, 150, 0.4),
+    0 0 20px rgba(255, 0, 200, 0.2);
 
-    animation: fadeUp 1.5s ease;
+    animation: fadeUp 1.2s ease;
 }
 
 /* TEXTO DELA */
 .text-dela{
-    font-size:20px;
+    font-size:18px;
     line-height:1.6;
 
     color:#ff4dc4;
@@ -75,38 +98,32 @@ section{
     text-shadow:
     0 0 5px #ff4dc4,
     0 0 12px #ff00cc,
-    0 0 25px #ff00ff;
+    0 0 20px #ff00ff;
 }
 
-/* FUNDO TRANSPARENTE CARD */
-.card{
-    background: rgba(0,0,0,0.4);
-    padding:25px;
-    border-radius:20px;
-    backdrop-filter: blur(10px);
-}
-
-/* SUAS FOTOS */
+/* FOTOS SUAS */
 .fotos-minhas{
     display:flex;
-    gap:15px;
+    justify-content:center;
+    gap:12px;
     margin:20px 0;
 }
 
 .fotos-minhas img{
-    width:150px;
+    width:45%;
     border-radius:15px;
 
     box-shadow:
-    0 0 15px rgba(0, 150, 255, 0.5),
-    0 0 30px rgba(0, 100, 255, 0.3);
+    0 0 10px rgba(0, 150, 255, 0.5),
+    0 0 20px rgba(0, 100, 255, 0.3);
 
-    animation: fadeUp 1.5s ease;
+    animation: fadeUp 1.2s ease;
 }
 
 /* TEXTO SEU */
 .text-meu{
-    font-size:20px;
+    font-size:18px;
+
     color:#4db8ff;
 
     text-shadow:
@@ -115,11 +132,11 @@ section{
     0 0 25px #0066ff;
 }
 
-/* ANIMAÇÃO */
+/* ANIMAÇÃO SUAVE */
 @keyframes fadeUp{
     from{
         opacity:0;
-        transform:translateY(40px);
+        transform:translateY(30px);
     }
     to{
         opacity:1;
