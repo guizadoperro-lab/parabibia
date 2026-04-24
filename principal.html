@@ -13,7 +13,6 @@
     font-family:'Segoe UI', sans-serif;
 }
 
-/* SCROLL SUAVE */
 html{
     scroll-behavior:smooth;
 }
@@ -21,7 +20,6 @@ html{
 body{
     background: url('gui1.jpg') center/cover no-repeat fixed;
     color:white;
-
     overflow-x:hidden;
     overflow-y:auto;
 }
@@ -43,7 +41,7 @@ body::after{
     100%{filter:blur(25px);}
 }
 
-/* SEÇÕES AJUSTADAS */
+/* SECTIONS */
 section{
     min-height:auto;
     padding:60px 20px;
@@ -51,7 +49,6 @@ section{
     justify-content:center;
 }
 
-/* aproxima seções */
 section + section{
     margin-top:-30px;
 }
@@ -60,12 +57,10 @@ section + section{
 .card{
     width:100%;
     max-width:500px;
-
     background: rgba(0,0,0,0.45);
     padding:25px;
     border-radius:20px;
     backdrop-filter: blur(10px);
-
     text-align:center;
 }
 
@@ -80,11 +75,9 @@ section + section{
 .fotos-dela img{
     width:45%;
     border-radius:15px;
-
     box-shadow:
     0 0 10px rgba(255, 0, 150, 0.4),
     0 0 20px rgba(255, 0, 200, 0.2);
-
     animation: fadeUp 1.2s ease;
 }
 
@@ -92,9 +85,7 @@ section + section{
 .text-dela{
     font-size:18px;
     line-height:1.6;
-
     color:#ff4dc4;
-
     text-shadow:
     0 0 5px #ff4dc4,
     0 0 12px #ff00cc,
@@ -112,27 +103,49 @@ section + section{
 .fotos-minhas img{
     width:45%;
     border-radius:15px;
-
     box-shadow:
     0 0 10px rgba(0, 150, 255, 0.5),
     0 0 20px rgba(0, 100, 255, 0.3);
-
     animation: fadeUp 1.2s ease;
 }
 
 /* TEXTO SEU */
 .text-meu{
     font-size:18px;
-
     color:#4db8ff;
-
     text-shadow:
     0 0 5px #4db8ff,
     0 0 15px #0099ff,
     0 0 25px #0066ff;
 }
 
-/* ANIMAÇÃO SUAVE */
+/* BOTÃO SEGUIR */
+.btn-seguir{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 25px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:bold;
+    color:white;
+
+    background: linear-gradient(45deg, #0099ff, #004cff);
+
+    box-shadow:
+    0 0 10px #0099ff,
+    0 0 20px #004cff;
+
+    transition:0.3s;
+}
+
+.btn-seguir:hover{
+    transform:scale(1.05);
+    box-shadow:
+    0 0 20px #00c3ff,
+    0 0 40px #0066ff;
+}
+
+/* ANIMAÇÃO */
 @keyframes fadeUp{
     from{
         opacity:0;
@@ -180,6 +193,9 @@ section + section{
         <div class="text-meu">
             olha eu pequeno, nem sabia oq estava por vir 💙
         </div>
+
+        <!-- BOTÃO -->
+        <a href="proxima.html" class="btn-seguir">seguir →</a>
 
     </div>
 </section>
