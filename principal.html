@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Você 💙</title>
+<title>Para você 💖</title>
 
 <style>
 *{
@@ -13,87 +13,84 @@
     font-family:'Segoe UI', sans-serif;
 }
 
+body{
+    background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+    url('gui1.jpg') no-repeat center/cover;
+
+    color:white;
+    overflow-x:hidden;
+}
+
 /* SCROLL SUAVE */
 html{
     scroll-behavior:smooth;
 }
 
-body{
-    min-height:100dvh;
-    padding:40px 0;
-
-    background:
-    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
-    url('gui1.jpg') no-repeat center center/cover;
-
-    animation: zoomBg 20s ease-in-out infinite alternate;
-}
-
-@keyframes zoomBg{
-    0%{background-size:100%;}
-    100%{background-size:110%;}
-}
-
-/* BLOCO */
+/* SEÇÕES */
 .section{
-    width:90%;
-    max-width:500px;
-    margin:60px auto;
-    padding:25px;
-
-    background:rgba(0,0,0,0.45);
-    backdrop-filter: blur(15px);
-
-    border-radius:20px;
-    text-align:center;
-
-    box-shadow:
-    0 0 8px rgba(0,150,255,0.3),
-    0 0 20px rgba(0,150,255,0.4);
-
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
     opacity:0;
-    transform:translateY(40px);
-    transition:all 1s ease;
+    transform:translateY(80px) scale(0.95);
+    transition:all 1.2s ease;
 }
 
 .section.show{
     opacity:1;
-    transform:translateY(0);
+    transform:translateY(0) scale(1);
+}
+
+/* CONTAINER DAS FOTOS */
+.fotos-dela{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
 }
 
 /* IMAGENS */
-img{
-    width:100%;
-    border-radius:15px;
-    margin-bottom:15px;
-}
-
-/* FOTO DELA (ROSA) */
 .img-dela{
+    border-radius:15px;
+
     box-shadow:
-    0 0 8px rgba(255, 120, 200, 0.5),
-    0 0 20px rgba(255, 120, 200, 0.6),
-    0 0 35px rgba(255, 120, 200, 0.7);
+    0 0 10px #ff66cc,
+    0 0 25px #ff33cc,
+    0 0 40px #ff00ff;
+
+    animation: float 6s ease-in-out infinite alternate;
 }
 
-/* SUA FOTO (AZUL) */
-.img-eu{
-    box-shadow:
-    0 0 8px rgba(0,150,255,0.4),
-    0 0 20px rgba(0,150,255,0.5),
-    0 0 35px rgba(0,150,255,0.6);
+/* PRINCIPAL */
+.img-dela.grande{
+    width:65%;
+    animation-delay:0s;
 }
 
-/* TEXTO BASE */
-.text{
-    font-size:20px;
-    line-height:1.6;
+/* MENOR */
+.img-dela.pequena{
+    width:35%;
+    transform:rotate(-5deg);
+    opacity:0.9;
+    animation-delay:1s;
 }
 
-/* TEXTO DELA (ROSA) */
+/* MOVIMENTO LEVE (cinemático) */
+@keyframes float{
+    0%{transform:translateY(0) scale(1);}
+    100%{transform:translateY(-10px) scale(1.02);}
+}
+
+/* TEXTO DELA */
 .text-dela{
     font-size:20px;
     line-height:1.6;
+    text-align:center;
 
     color:#ff4dc4;
 
@@ -103,67 +100,63 @@ img{
     0 0 25px #ff00ff;
 }
 
-/* TEXTO PADRÃO (AZUL) */
-.text{
-    color:white;
-
-    text-shadow:
-    0 0 5px #fff,
-    0 0 10px #00bfff;
+/* FADE NAS IMAGENS */
+.fade-img{
+    opacity:0;
+    transform:scale(0.9);
+    transition:all 1.5s ease;
 }
 
-/* LABEL */
-.label{
-    margin-top:10px;
-    color:#cceeff;
-    font-size:16px;
+.fade-img.show{
+    opacity:1;
+    transform:scale(1);
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- BLOCO DELA -->
-<div class="section">
-    <img src="beaz2.jpg" class="img-dela">
+<!-- SEÇÃO DELA -->
+<div class="section" id="sec1">
+
+    <div class="fotos-dela">
+        <img src="beaz2.jpg" class="img-dela grande fade-img">
+        <img src="beaz1.jpg" class="img-dela pequena fade-img">
+    </div>
 
     <div class="text-dela">
         Oii meu amor, sabe quem é essa daqui? isso mesmo, é você, a Minha Princesinha. 
         Só de imaginar que uma criança desse tamanhozinho seria a pessoa pelo quem eu me apaixonaria no futuro 
         ja me faz esta nostálgico, você era tão bonitinha quando era criança, fico muito feliz por você ter crescido tão bem meu amor 💖
     </div>
-</div>
 
-<!-- BLOCO SEU -->
-<div class="section">
-    <img src="gui2.jpg" class="img-eu">
-    <div class="label">olha eu</div>
-</div>
-
-<!-- BLOCO EXTRA -->
-<div class="section">
-    <div class="text">cada momento com você é especial 💙</div>
 </div>
 
 <script>
 
-/* SCROLL CINEMATOGRÁFICO */
-const sections = document.querySelectorAll('.section');
+/* MOSTRAR SEÇÃO (cinemático) */
+function mostrarElemento(){
+    const sec = document.querySelectorAll('.section');
+    const imgs = document.querySelectorAll('.fade-img');
 
-function mostrarAoRolar(){
-    const trigger = window.innerHeight * 0.85;
+    sec.forEach(s=>{
+        const top = s.getBoundingClientRect().top;
+        if(top < window.innerHeight - 100){
+            s.classList.add('show');
+        }
+    });
 
-    sections.forEach(sec=>{
-        const top = sec.getBoundingClientRect().top;
-
-        if(top < trigger){
-            sec.classList.add('show');
+    imgs.forEach(img=>{
+        const top = img.getBoundingClientRect().top;
+        if(top < window.innerHeight - 50){
+            img.classList.add('show');
         }
     });
 }
 
-window.addEventListener('scroll', mostrarAoRolar);
-mostrarAoRolar();
+window.addEventListener('scroll', mostrarElemento);
+window.addEventListener('load', mostrarElemento);
 
 </script>
 
