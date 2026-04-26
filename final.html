@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Final</title>
+<title>Final 💙</title>
 
 <style>
 *{
@@ -21,151 +21,116 @@ body{
     flex-direction:column;
 
     background:
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
-    url('gui1.jpg') center/cover no-repeat;
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+    url('neon-blue.jpg') no-repeat center/cover;
 
-    color:white;
     overflow:hidden;
 }
 
-/* PARTÍCULAS */
-.particula{
-    position:fixed;
-    bottom:-10px;
-    width:5px;
-    height:5px;
-    background:white;
-    border-radius:50%;
-    opacity:0.6;
-    animation: subir 8s linear infinite;
-}
-
-@keyframes subir{
-    0%{transform:translateY(0); opacity:0;}
-    50%{opacity:1;}
-    100%{transform:translateY(-100vh); opacity:0;}
-}
-
-/* CARD FINAL */
-.card-final{
-    max-width:500px;
+/* CONTAINER */
+.container{
+    text-align:center;
     padding:30px;
 
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
-
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
     border-radius:20px;
-    text-align:center;
 
-    opacity:0;
-    transform:translateY(40px);
-    animation: aparecer 2s forwards;
+    box-shadow: 0 0 40px rgba(0,150,255,0.5);
+
+    animation: fadeIn 2s ease;
 }
 
-/* TEXTO */
-.text-final{
+/* TEXTO PRINCIPAL */
+.titulo{
+    font-size:28px;
+    margin-bottom:25px;
+
+    color:#00cfff;
+
+    text-shadow:
+    0 0 10px #00cfff,
+    0 0 20px #0099ff,
+    0 0 40px #0066ff;
+}
+
+/* EU TE AMO */
+.amor{
     font-size:20px;
-    line-height:1.6;
-
-    color:#ff4dc4;
-
-    text-shadow:
-    0 0 5px #ff4dc4,
-    0 0 15px #ff00cc,
-    0 0 30px #ff00ff;
-}
-
-/* FRASE FINAL */
-.frase-final{
-    margin-top:20px;
-    font-size:26px;
+    margin:5px 0;
     font-weight:bold;
-
-    color:#ffffff;
-
-    text-shadow:
-    0 0 10px #fff,
-    0 0 20px #ff4da6,
-    0 0 40px #ff4da6;
-
-    animation: pulse 2s infinite;
 }
+
+/* CORES DIFERENTES */
+.c1{color:#ff4d4d;}
+.c2{color:#ff9900;}
+.c3{color:#ffff66;}
+.c4{color:#66ff66;}
+.c5{color:#00ffff;}
+.c6{color:#3399ff;}
+.c7{color:#cc66ff;}
+.c8{color:#ff66cc;}
 
 /* BOTÃO */
-.btn{
+button{
     margin-top:25px;
     padding:12px 25px;
+    border:none;
     border-radius:10px;
-    text-decoration:none;
+
+    background: linear-gradient(45deg, #00cfff, #0066ff);
     color:white;
     font-weight:bold;
 
-    background: linear-gradient(45deg, #0099ff, #004cff);
+    cursor:pointer;
 
-    box-shadow:
-    0 0 10px #0099ff,
-    0 0 20px #004cff;
+    box-shadow: 0 0 20px rgba(0,150,255,0.6);
 
     transition:0.3s;
 }
 
-.btn:hover{
+button:hover{
     transform:scale(1.05);
 }
 
-/* ANIMAÇÕES */
-@keyframes aparecer{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+/* ANIMAÇÃO */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
 }
-
-@keyframes pulse{
-    0%{opacity:0.7;}
-    50%{opacity:1;}
-    100%{opacity:0.7;}
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="card-final">
+<div class="container">
 
-    <div class="text-final">
-        talvez você nem imagine o quanto você mudou minha vida...  
-        desde o momento que você entrou nela, tudo ficou mais leve, mais bonito, mais real.  
-        cada detalhe seu, cada sorriso, cada jeito...  
-        foi fazendo eu me apaixonar cada vez mais 💖
-        <br><br>
-        eu só queria que você soubesse que nada disso é por acaso.
+    <!-- TEXTO PRINCIPAL (VOCÊ ALTERA) -->
+    <div class="titulo">
+        Por mais que a gente sempre brigue, a gente sempre se resolve. Isso mostra quem realmente somos, quem amamos e a nossa vontade de permanecer um ao lado do outro.
+        Bia, você é o meu bem precioso 🤍
     </div>
 
-    <div class="frase-final">
-        eu te amo 🤍
-    </div>
+    <!-- EU TE AMO (2 JUNTOS PRA FACILITAR) -->
+    <div class="amor c1">eu te amo</div>
+    <div class="amor c2">eu te amo</div>
 
-    <a href="index.html" class="btn">voltar ↺</a>
+    <!-- OUTROS -->
+    <div class="amor c3">eu te amo</div>
+    <div class="amor c4">eu te amo</div>
+    <div class="amor c5">eu te amo</div>
+    <div class="amor c6">eu te amo</div>
+    <div class="amor c7">eu te amo</div>
+    <div class="amor c8">eu te amo</div>
+
+    <button onclick="irFinal2()">Final 💙</button>
 
 </div>
 
 <script>
-/* PARTÍCULAS */
-function criarParticula(){
-    const p = document.createElement("div");
-    p.classList.add("particula");
-
-    p.style.left = Math.random()*100 + "vw";
-    p.style.animationDuration = (5 + Math.random()*5) + "s";
-
-    document.body.appendChild(p);
-
-    setTimeout(()=>{p.remove();},8000);
+function irFinal2(){
+    window.location.href = "final2.html"; // verdadeiro final
 }
-
-setInterval(criarParticula, 300);
 </script>
 
 </body>
