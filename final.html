@@ -14,23 +14,26 @@
 }
 
 body{
-    height:100vh;
+    min-height:100vh;
     display:flex;
-    justify-content:center;
+    justify-content:flex-start; /* começa de cima */
     align-items:center;
     flex-direction:column;
 
-    background:
-    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-    url('neon-blue.jpg') no-repeat center/cover;
-
-    overflow:hidden;
+    overflow-y:auto; /* ✅ libera rolagem */
 }
 
 /* CONTAINER */
 .container{
-    text-align:center;
-    padding:30px;
+    width:90%;
+    max-width:600px;
+
+    margin:40px auto; /* centraliza e tira aquele espaço estranho */
+    padding:25px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start; /* deixa tudo alinhado à esquerda */
 
     background: rgba(0,0,0,0.4);
     backdrop-filter: blur(12px);
