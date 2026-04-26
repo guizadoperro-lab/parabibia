@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Final</title>
+<title>Continuação 💖</title>
 
 <style>
 *{
@@ -20,43 +20,51 @@ body{
     align-items:center;
 
     background:
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
-    url('anna.jpg') no-repeat center center/cover;
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)),
+    url('anna.jpg') no-repeat center/cover;
 
     overflow:hidden;
 }
 
-/* CONTAINER CENTRAL */
+/* CARD */
 .container{
+    width:90%;
+    max-width:500px;
+    max-height:80vh;
+
+    padding:25px;
     text-align:center;
-    padding:30px;
+
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
     border-radius:20px;
 
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 0 40px rgba(255,0,150,0.5);
 
-    box-shadow: 0 0 40px rgba(255, 0, 150, 0.5);
+    overflow-y:auto;
+    padding-right:10px;
 
-    animation: fadeIn 2s ease;
+    animation: fadeIn 1.5s ease;
 }
 
-/* TEXTO ROSA */
+/* TEXTO */
 .texto{
     font-size:16px;
-    line-height:1.7;
-    margin-bottom:30px;
+    line-height:1.8;
 
     max-width:90%;
-    margin:auto;
+    margin: 0 auto 30px;
+
+    text-align: justify;
 
     color:#ff4dc4;
 
     text-shadow:
-    0 0 8px #ff4dc4,
-    0 0 18px #ff00cc,
-    0 0 30px #ff00ff;
+    0 0 6px #ff4dc4,
+    0 0 12px #ff00cc,
+    0 0 20px #ff00ff;
 
-    animation: pulse 2s infinite;
+    animation: pulse 2.5s infinite;
 }
 
 /* BOTÃO */
@@ -65,21 +73,19 @@ button{
     border:none;
     border-radius:10px;
 
-    background: linear-gradient(45deg, #ff4dc4, #ff00aa);
+    background: linear-gradient(45deg, #ff4dc4, #ff0099);
     color:white;
     font-weight:bold;
-    font-size:16px;
 
     cursor:pointer;
 
-    box-shadow: 0 0 20px rgba(255,0,170,0.6);
+    box-shadow: 0 0 20px rgba(255,0,150,0.6);
 
     transition:0.3s;
 }
 
 button:hover{
-    transform:scale(1.08);
-    box-shadow: 0 0 30px rgba(255,0,170,0.9);
+    transform:scale(1.05);
 }
 
 /* ANIMAÇÕES */
@@ -105,20 +111,25 @@ button:hover{
 <body>
 
 <div class="container">
+
+    <!-- ✏️ COLE SEU TEXTO AQUI -->
     <div class="texto">
         Desde então, eu conheci você justamente por causa de uma foto sua que você postou em um lugar que eu sou doido para conhecer, mas isso não vem ao caso. Estou aqui para dizer que você mudou muito a minha vida, mudou minha forma de pensar, de agir e de me guiar a cada passo que eu dou.
+        <br><br>
 
+        <br><br>
 O seu sorriso me encanta, suas palavras me trazem conforto. A cada dia que passa eu me sinto mais apaixonado por você. Eu sei que nada disso foi por acaso, se aconteceu e fez a gente estar junto até agora é porque existe um motivo, e se existe esse motivo, só depende de nós fazermos dar certo, não é mesmo?
 
 Você sabe que eu te amo, né garota? Você é a luz no fim do meu túnel, é a resposta mais linda das minhas orações. Eu te amo, Beatriz.
     </div>
 
-    <button onclick="ir()">Seguir 🤍</button>
+    <button onclick="irFinal()">Seguir ➜</button>
+
 </div>
 
 <script>
-function ir(){
-    window.location.href = "proxima.html"; // troca pelo nome da sua próxima página
+function irFinal(){
+    window.location.href = "final.html";
 }
 </script>
 
