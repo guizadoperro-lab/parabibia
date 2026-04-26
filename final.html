@@ -16,11 +16,18 @@
 body{
     min-height:100vh;
     display:flex;
-    justify-content:flex-start; /* começa de cima */
+    justify-content:flex-start;
     align-items:center;
     flex-direction:column;
 
-    overflow-y:auto; /* ✅ libera rolagem */
+    overflow-y:auto;
+
+    background:
+    radial-gradient(circle at top, rgba(0,120,255,0.15), transparent 60%),
+    radial-gradient(circle at bottom, rgba(0,80,200,0.1), transparent 70%),
+    #000; /* fundo preto */
+
+    color:white;
 }
 
 /* CONTAINER */
@@ -118,7 +125,7 @@ button:hover{
     </div>
 
     <!-- EU TE AMO (2 JUNTOS PRA FACILITAR) -->
-    <<div class="frase c1">Eu amo seu jeitinho</div>
+    <div class="frase c1">Eu amo seu jeitinho</div>
 <div class="frase c2">Eu amo seu cabelo</div>
 <div class="frase c3">Eu amo seus olhos</div>
 <div class="frase c4">Eu amo seu sorriso</div>
