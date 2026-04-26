@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
+    url('gui1.jpg') center/cover no-repeat;
+
+    color:white;
+    overflow:hidden;
+}
+
+/* PARTÍCULAS */
+.particula{
+    position:fixed;
+    bottom:-10px;
+    width:5px;
+    height:5px;
+    background:white;
+    border-radius:50%;
+    opacity:0.6;
+    animation: subir 8s linear infinite;
+}
+
+@keyframes subir{
+    0%{transform:translateY(0); opacity:0;}
+    50%{opacity:1;}
+    100%{transform:translateY(-100vh); opacity:0;}
+}
+
+/* CARD FINAL */
+.card-final{
+    max-width:500px;
+    padding:30px;
+
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+
+    border-radius:20px;
+    text-align:center;
+
+    opacity:0;
+    transform:translateY(40px);
+    animation: aparecer 2s forwards;
+}
+
+/* TEXTO */
+.text-final{
+    font-size:20px;
+    line-height:1.6;
+
+    color:#ff4dc4;
+
+    text-shadow:
+    0 0 5px #ff4dc4,
+    0 0 15px #ff00cc,
+    0 0 30px #ff00ff;
+}
+
+/* FRASE FINAL */
+.frase-final{
+    margin-top:20px;
+    font-size:26px;
+    font-weight:bold;
+
+    color:#ffffff;
+
+    text-shadow:
+    0 0 10px #fff,
+    0 0 20px #ff4da6,
+    0 0 40px #ff4da6;
+
+    animation: pulse 2s infinite;
+}
+
+/* BOTÃO */
+.btn{
+    margin-top:25px;
+    padding:12px 25px;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+
+    background: linear-gradient(45deg, #0099ff, #004cff);
+
+    box-shadow:
+    0 0 10px #0099ff,
+    0 0 20px #004cff;
+
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* ANIMAÇÕES */
+@keyframes aparecer{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes pulse{
+    0%{opacity:0.7;}
+    50%{opacity:1;}
+    100%{opacity:0.7;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card-final">
+
+    <div class="text-final">
+        talvez você nem imagine o quanto você mudou minha vida...  
+        desde o momento que você entrou nela, tudo ficou mais leve, mais bonito, mais real.  
+        cada detalhe seu, cada sorriso, cada jeito...  
+        foi fazendo eu me apaixonar cada vez mais 💖
+        <br><br>
+        eu só queria que você soubesse que nada disso é por acaso.
+    </div>
+
+    <div class="frase-final">
+        eu te amo 🤍
+    </div>
+
+    <a href="index.html" class="btn">voltar ↺</a>
+
+</div>
+
+<script>
+/* PARTÍCULAS */
+function criarParticula(){
+    const p = document.createElement("div");
+    p.classList.add("particula");
+
+    p.style.left = Math.random()*100 + "vw";
+    p.style.animationDuration = (5 + Math.random()*5) + "s";
+
+    document.body.appendChild(p);
+
+    setTimeout(()=>{p.remove();},8000);
+}
+
+setInterval(criarParticula, 300);
+</script>
+
+</body>
+</html>
